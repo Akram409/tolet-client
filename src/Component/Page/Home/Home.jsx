@@ -46,7 +46,7 @@ const Home = () => {
   
 //   console.log("flatdataUUUU", flatData);
 const fetchData = async () => {
-    const res = await axios.get(`https://tolet-server-mu.vercel.app/flatList?location=${searchValue}&sort=${priceSort}`);
+    const res = await axios.get(`https://tolet-server2.vercel.app/flatList?location=${searchValue}&sort=${priceSort}`);
     setFlatData(res.data);
   };
   
@@ -72,7 +72,7 @@ const fetchData = async () => {
         message.success("Successfully Added WishList!");
         console.log("hello", flatData);
   
-        await axios.post(`https://tolet-server-mu.vercel.app/wishList`, flatData);
+        await axios.post(`https://tolet-server2.vercel.app/wishList`, flatData);
         console.log("Added to wishlist:", flat);
       } catch (error) {
         console.error("Error adding to wishlist:", error);
@@ -239,7 +239,7 @@ const fetchData = async () => {
                   </div>
                   <img
                     className="rounded-xl bg-black/40 w-full object-cover h-[230px] md:h-[290px] lg:h-[309px] border border-gray-150"
-                    src={`https://tolet-server-mu.vercel.app/images/${flat.flatList.images[0]}`}
+                    src={`https://tolet-server2.vercel.app/images/${flat.flatList.images[0]}`}
                     alt="Flat Image"
                   />
                 </div>

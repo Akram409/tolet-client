@@ -28,9 +28,9 @@ const SubletData = () => {
         try {
             let url = ""; 
             if (activeButton === "flat") {
-                url = `https://tolet-server-mu.vercel.app/flatList/${email}?type=flat`; 
+                url = `https://tolet-server2.vercel.app/flatList/${email}?type=flat`; 
             } else if (activeButton === "sublet") {
-                url = `https://tolet-server-mu.vercel.app/flatList/${email}?type=sublet`; 
+                url = `https://tolet-server2.vercel.app/flatList/${email}?type=sublet`; 
             } 
     
              const roommateResponse = await axios.get(url);
@@ -117,7 +117,7 @@ const SubletData = () => {
             const flatId = subletData._id;
             console.log("flatId", flatId);
             const response = await axios.patch(
-                `https://tolet-server-mu.vercel.app/flatList/${flatId}`,
+                `https://tolet-server2.vercel.app/flatList/${flatId}`,
                 formDataToSend
             );
             alert("Flat list updated successfully");
@@ -131,7 +131,7 @@ const SubletData = () => {
     const handleDeleteFlat = async (id) => {
         try {
             const response = await axios.delete(
-                `https://tolet-server-mu.vercel.app/flat/${id}`
+                `https://tolet-server2.vercel.app/flat/${id}`
             );
             if (response.status === 200) {
                 alert("Sublet deleted successfully.");
@@ -286,7 +286,7 @@ const SubletData = () => {
                                                 <img
                                                     className="rounded-xl bg-black/40 object-cover w-full h-[230px] md:h-[290px] lg:h-[309px] border border-gray-150
                                                     "
-                                                    src={`https://tolet-server-mu.vercel.app/images/${flat.flatList.images[0]}`}
+                                                    src={`https://tolet-server2.vercel.app/images/${flat.flatList.images[0]}`}
                                                     alt="Flat Image"
                                                 />
                                             </div>

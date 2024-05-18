@@ -41,7 +41,7 @@ const RoommateDetails = () => {
       };
 
       // console.log(roomMates);
-     const response = await axios.post(`https://tolet-server-mu.vercel.app/wishlist`, roomMates);
+     const response = await axios.post(`https://tolet-server2.vercel.app/wishlist`, roomMates);
      if (response.status === 201) {
       // console.log("Added to wishlist:", flat);
       message.success("Successfully Added to Wishlist!");
@@ -69,7 +69,7 @@ const RoommateDetails = () => {
       };
       // console.log("hello", flatData);
 
-      await axios.post(`https://tolet-server-mu.vercel.app/reportList`, report);
+      await axios.post(`https://tolet-server2.vercel.app/reportList`, report);
       message.success("Successfully Added reportList!");
       setOpenReportModal(false);
       console.log("Added to wishlist:", report);
@@ -122,7 +122,7 @@ const RoommateDetails = () => {
       <div className="w-11/12 mx-auto lg:flex mt-3 md:rounded-lg lg:rounded-none gap-3">
         <div className="lg:w-[50%] relative">
           <img
-            src={`https://tolet-server-mu.vercel.app/images/${roommateDetails?.roomateList?.images[0]}`}
+            src={`https://tolet-server2.vercel.app/images/${roommateDetails?.roomateList?.images[0]}`}
             alt=""
             className="lg:h-[500px] md:h-[400px] h-[250px] object-cover  max-h-screen w-full rounded-2xl lg:rounded-none lg:rounded-l-2xl  xl:rounded-l-2xl border border-gray-150 mb-3"
           />
@@ -164,7 +164,7 @@ const RoommateDetails = () => {
                     {allRoommateImages.map((image, index) => (
                       <div key={index} className="flex-1 gap-2 ">
                         <img
-                          src={`https://tolet-server-mu.vercel.app/images/${image}`}
+                          src={`https://tolet-server2.vercel.app/images/${image}`}
                           alt=""
                           className="lg:h-[500px] md:h-[400px] object-cover h-56 w-full mb-4 border border-gray-150 rounded-md"
                         />
@@ -179,28 +179,28 @@ const RoommateDetails = () => {
         <div className="lg:w-[50%] grid grid-cols-1 md:grid-cols-2  md:h-[500px] gap-3">
           <div className="bg-cover overflow-hidden relative ">
             <img
-              src={`https://tolet-server-mu.vercel.app/images/${roommateDetails?.roomateList?.images[1]}`}
+              src={`https://tolet-server2.vercel.app/images/${roommateDetails?.roomateList?.images[1]}`}
               alt=""
               className="w-full h-full border object-cover  border-gray-150 md:block hidden rounded-tl-2xl  lg:rounded-tl"
             />
           </div>
           <div className="bg-cover overflow-hidden relative rounded-tr-2xl">
             <img
-              src={`https://tolet-server-mu.vercel.app/images/${roommateDetails?.roomateList?.images[2]}`}
+              src={`https://tolet-server2.vercel.app/images/${roommateDetails?.roomateList?.images[2]}`}
               alt=""
               className="w-full h-full border object-cover  border-gray-150 md:block hidden "
             />
           </div>
           <div className="bg-cover overflow-hidden relative ">
             <img
-              src={`https://tolet-server-mu.vercel.app/images/${roommateDetails?.roomateList?.images[3]}`}
+              src={`https://tolet-server2.vercel.app/images/${roommateDetails?.roomateList?.images[3]}`}
               alt=""
               className="w-full h-full border object-cover  border-gray-150 md:block hidden rounded-bl-2xl lg:rounded-none  lg:rounded-tl"
             />
           </div>
           <div className="bg-cover overflow-hidden relative rounded-br-2xl">
             <img
-              src={`https://tolet-server-mu.vercel.app/images/${roommateDetails?.roomateList?.images[4]}`}
+              src={`https://tolet-server2.vercel.app/images/${roommateDetails?.roomateList?.images[4]}`}
               alt=""
               className="w-full h-full rounded-br-2xl object-cover  border border-gray-150 md:block hidden"
             />
@@ -242,7 +242,7 @@ const RoommateDetails = () => {
                       {allRoommateImages.map((image, index) => (
                         <div key={index} className="flex-1 gap-2 ">
                           <img
-                            src={`https://tolet-server-mu.vercel.app/images/${image}`}
+                            src={`https://tolet-server2.vercel.app/images/${image}`}
                             alt=""
                             className="lg:h-[500px] md:h-[400px] h-56 w-full mb-4 border border-gray-150 rounded-md"
                           />
@@ -269,7 +269,7 @@ const RoommateDetails = () => {
                     <div>
                       {" "}
                       <img
-                        src={`https://tolet-server-mu.vercel.app/images/${roommateDetails?.roomateList?.contact_person?.image}`}
+                        src={`https://tolet-server2.vercel.app/images/${roommateDetails?.roomateList?.contact_person?.image}`}
                         alt=""
                         className="md:w-16 md:h-16 rounded-lg w-28 h-14"
                       />

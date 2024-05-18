@@ -45,11 +45,11 @@ const FindRoommate = () => {
     const fetchData = async () => {
       let url = "";
       if (activeButton === "flat") {
-        url = `https://tolet-server-mu.vercel.app/flatList?location=${searchValue}&sort=${priceSort}&type=flat`;
+        url = `https://tolet-server2.vercel.app/flatList?location=${searchValue}&sort=${priceSort}&type=flat`;
       } else if (activeButton === "sublet") {
-        url = `https://tolet-server-mu.vercel.app/flatList?location=${searchValue}&sort=${priceSort}&type=sublet`;
+        url = `https://tolet-server2.vercel.app/flatList?location=${searchValue}&sort=${priceSort}&type=sublet`;
       } else if (activeButton === "roommate") {
-        url = `https://tolet-server-mu.vercel.app/roommateList?location=${searchValue}&sort=${priceSort}&gender=${gender}`;
+        url = `https://tolet-server2.vercel.app/roommateList?location=${searchValue}&sort=${priceSort}&gender=${gender}`;
       }
       const res = await axios.get(url);
       setRoomMate(res.data);
@@ -104,7 +104,7 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
       };
      
       // console.log(roomMates);
-      const response = await axios.post(`https://tolet-server-mu.vercel.app/wishlist`, roomMates);
+      const response = await axios.post(`https://tolet-server2.vercel.app/wishlist`, roomMates);
       if (response.status === 201) {
         // console.log("Added to wishlist:", flat);
         message.success("Successfully Added to Wishlist!");
@@ -291,7 +291,7 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
                 <div
                   className="absolute inset-0 m-0 h-[230px] md:h-[290px] lg:h-[319px] border rounded-md border-gray-150 w-full overflow-hidden bg-black/40   bg-cover bg-clip-border bg-center text-gray-700 shadow-none"
                   style={{
-                    backgroundImage: `url('https://tolet-server-mu.vercel.app/images/${roommate?.roomateList?.images[0]}')`,
+                    backgroundImage: `url('https://tolet-server2.vercel.app/images/${roommate?.roomateList?.images[0]}')`,
                   }}
                 >
                   <div className="flex justify-end items-center left-4 right-4 top-4 absolute">
@@ -322,7 +322,7 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
                 <div className="relative lg:top-1 -top-5 md:-top-10 p-6 px-6 lg:py-6 md:px-5">
                   <img
                     alt="user"
-                    src={`https://tolet-server-mu.vercel.app/images/${roommate?.roomateList?.contact_person
+                    src={`https://tolet-server2.vercel.app/images/${roommate?.roomateList?.contact_person
                     ?.image}`}
                     className="relative inline-block h-[50px] w-[50px] md:h-[70px] md:w-[70px] lg:h-[80px] lg:w-[80px] !rounded-lg border-2 border-white object-cover object-center"
                   />

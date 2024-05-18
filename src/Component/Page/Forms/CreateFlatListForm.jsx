@@ -127,7 +127,7 @@ export default function CreateFlatListForm() {
       });
       console.log("ggggggggggggggg", formDataToSend);
 
-      const response = await fetch("https://tolet-server-mu.vercel.app/add/roommateList", {
+      const response = await fetch("https://tolet-server2.vercel.app/add/roommateList", {
         method: "POST",
         body: formDataToSend,
       });

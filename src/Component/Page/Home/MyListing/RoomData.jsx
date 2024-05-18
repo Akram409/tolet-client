@@ -28,11 +28,11 @@ const RoomData = () => {
     
           
             if (activeButton === "flat") {
-                url = `https://tolet-server-mu.vercel.app/flatList/${email}?type=flat`; 
+                url = `https://tolet-server2.vercel.app/flatList/${email}?type=flat`; 
             } else if (activeButton === "sublet") {
-                url = `https://tolet-server-mu.vercel.app/flatList/${email}?type=sublet`; 
+                url = `https://tolet-server2.vercel.app/flatList/${email}?type=sublet`; 
             } else if (activeButton === "roommate") {
-                url = `https://tolet-server-mu.vercel.app/roommateList/${email}`; 
+                url = `https://tolet-server2.vercel.app/roommateList/${email}`; 
             }
     
             // Make the request with the constructed URL
@@ -127,7 +127,7 @@ const RoomData = () => {
               });
             const roomId = roomData._id;
             const response = await fetch(
-                `https://tolet-server-mu.vercel.app/roommateList/${roomId}`,
+                `https://tolet-server2.vercel.app/roommateList/${roomId}`,
                 {
                     method: "PATCH",
                     body: formDataSend,
@@ -148,7 +148,7 @@ const RoomData = () => {
     const handleDeleteRoommate = async (id) => {
         try {
             const response = await axios.delete(
-                `https://tolet-server-mu.vercel.app/roommateList/${id}`
+                `https://tolet-server2.vercel.app/roommateList/${id}`
             );
             if (response.status === 200) {
                 console.log("Roommate deleted successfully.");
@@ -305,7 +305,7 @@ const RoomData = () => {
                                                 </div>
                                                 <img
                                                     className="rounded-xl bg-black/40 object-cover w-full h-[230px] md:h-[290px] lg:h-[309px] border border-gray-150"
-                                                    src={`https://tolet-server-mu.vercel.app/images/${roommate.roomateList.images[0]}`}
+                                                    src={`https://tolet-server2.vercel.app/images/${roommate.roomateList.images[0]}`}
                                                     alt="Flat Image"
                                                 />
                                             </div>

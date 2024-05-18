@@ -12,7 +12,7 @@ const ResetPassword = () => {
       const password = form.password.value;
   
       try {
-        const response = await axios.post(`https://tolet-server-mu.vercel.app/reset-password/${id}/${token}`, {
+        const response = await axios.post(`https://tolet-server2.vercel.app/reset-password/${id}/${token}`, {
           password: password,
         });
         if (response.data.Status === "Success") {

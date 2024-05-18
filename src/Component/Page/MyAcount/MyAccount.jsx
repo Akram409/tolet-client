@@ -39,7 +39,7 @@ const MyAccount = () => {
       formDataToSend.append("isUpdate", formData.password ? "False" : "True");
 
       const response = await axios.patch(
-        `https://tolet-server-mu.vercel.app/update/${user?.email}`,
+        `https://tolet-server2.vercel.app/update/${user?.email}`,
         formDataToSend
       );
 
@@ -73,7 +73,7 @@ const MyAccount = () => {
        <div className="lg:w-[35%] bg-white shadow-lg">
             <img
                 alt="profile"
-                src={`https://tolet-server-mu.vercel.app/images/${user?.user_image}`}
+                src={`https://tolet-server2.vercel.app/images/${user?.user_image}`}
                 className="mx-auto object-cover rounded-full h-16 w-16 lg:h-32 lg:w-32"
               />
               <div className="flex px-16 mt-12">
