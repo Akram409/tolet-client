@@ -151,7 +151,7 @@ const closeHandleModal=()=>{
         formDataToSend.append("images", images);
       });
       console.log(formData);
-      const response = await fetch("https://tolet-server2.vercel.app/add/flatList", {
+      const response = await fetch("https://tolet-server-mu.vercel.app/add/flatList", {
         method: "POST",
         body: formDataToSend,
       });

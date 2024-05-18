@@ -67,7 +67,7 @@ const MyListing = () => {
     const fetchData = async () => {
         try {
             const roommateResponse = await axios.get(
-                `https://tolet-server2.vercel.app/roommateList/${email}`
+                `https://tolet-server-mu.vercel.app/roommateList/${email}`
             );
             setRoommateData(roommateResponse.data?.roommateLists);
         } catch (error) {
@@ -86,7 +86,7 @@ const MyListing = () => {
     const fetchFlatData = async () => {
         try {
             const flatResponse = await axios.get(
-                `https://tolet-server2.vercel.app/flatList/${email}`
+                `https://tolet-server-mu.vercel.app/flatList/${email}`
             );
             setFlatData(flatResponse.data?.flatList);
         } catch (error) {
@@ -100,7 +100,7 @@ const MyListing = () => {
     const handleDeleteRoommate = async (id) => {
         try {
             const response = await axios.delete(
-                `https://tolet-server2.vercel.app/roommateList/${id}`
+                `https://tolet-server-mu.vercel.app/roommateList/${id}`
             );
             if (response.status === 200) {
                 console.log("Roommate deleted successfully.");
@@ -116,7 +116,7 @@ const MyListing = () => {
     const handleDeleteFlat = async (id) => {
         try {
             const response = await axios.delete(
-                `https://tolet-server2.vercel.app/flat/${id}`
+                `https://tolet-server-mu.vercel.app/flat/${id}`
             );
             if (response.status === 200) {
                 console.log("Flat deleted successfully.");
@@ -207,7 +207,7 @@ const MyListing = () => {
               });
             const roomId = roomData._id;
             const response = await fetch(
-                `https://tolet-server2.vercel.app/roommateList/${roomId}`,
+                `https://tolet-server-mu.vercel.app/roommateList/${roomId}`,
                 {
                     method: "PATCH",
                     body: formDataSend,
@@ -295,7 +295,7 @@ const MyListing = () => {
             const flatId = subletData._id;
             console.log("flatId", flatId);
             const response = await axios.patch(
-                `https://tolet-server2.vercel.app/flatList/${flatId}`,
+                `https://tolet-server-mu.vercel.app/flatList/${flatId}`,
                 formDataToSend
             );
             alert("Flat list updated successfully");
@@ -476,7 +476,7 @@ const MyListing = () => {
     //       };
     
     //       // console.log(roomMates);
-    //      const response = await axios.post(`https://tolet-server2.vercel.app/wishlist`, roomMates);
+    //      const response = await axios.post(`https://tolet-server-mu.vercel.app/wishlist`, roomMates);
     //      if (response.status === 201) {
     //       // console.log("Added to wishlist:", flat);
     //       message.success("Successfully Added to Wishlist!");
@@ -505,7 +505,7 @@ const MyListing = () => {
     //       };
     //       // console.log("hello", flatData);
       
-    //       const response = await axios.post(`https://tolet-server2.vercel.app/wishList`, flatData);
+    //       const response = await axios.post(`https://tolet-server-mu.vercel.app/wishList`, flatData);
           
     //       if (response.status === 201) {
     //         // console.log("Added to wishlist:", flat);
@@ -583,7 +583,7 @@ const MyListing = () => {
                                                    
                                                     <img
                                                         className="rounded-xl bg-black/40 object-cover w-full h-[230px] md:h-[290px] lg:h-[309px] border border-gray-150"
-                                                        src={`https://tolet-server2.vercel.app/images/${roommate.roomateList.images[0]}`}
+                                                        src={`https://tolet-server-mu.vercel.app/images/${roommate.roomateList.images[0]}`}
                                                         alt="Flat Image"
                                                     />
                                                 </div>
@@ -1221,7 +1221,7 @@ const MyListing = () => {
                                                     
                                                     <img
                                                         className="rounded-xl bg-black/40 object-cover w-full h-[230px] md:h-[290px] lg:h-[309px] border border-gray-150"
-                                                        src={`https://tolet-server2.vercel.app/images/${flat.flatList.images[0]}`}
+                                                        src={`https://tolet-server-mu.vercel.app/images/${flat.flatList.images[0]}`}
                                                         alt="Flat Image"
                                                     />
                                                 </div>

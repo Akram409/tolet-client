@@ -47,9 +47,9 @@ const Listing = () => {
     const fetchData = async () => {
         let url = "";
         if (activeButton === "flat") {
-            url = `https://tolet-server2.vercel.app/flatList?search=${searchValueOwner}&location=${searchValueLocation}&type=flat`;
+            url = `https://tolet-server-mu.vercel.app/flatList?search=${searchValueOwner}&location=${searchValueLocation}&type=flat`;
         } else if (activeButton === "sublet") {
-            url = `https://tolet-server2.vercel.app/flatList?search=${searchValueOwner}&location=${searchValueLocation}&type=sublet`;
+            url = `https://tolet-server-mu.vercel.app/flatList?search=${searchValueOwner}&location=${searchValueLocation}&type=sublet`;
         }
         console.log(url);
         const res = await axios.get(url);
@@ -84,7 +84,7 @@ const Listing = () => {
     const handleDeleteFlat = async (id) => {
         try {
             const response = await axios.delete(
-                `https://tolet-server2.vercel.app/flat/${id}`
+                `https://tolet-server-mu.vercel.app/flat/${id}`
             );
             if (response.status === 200) {
                 console.log("Flat deleted successfully.");
@@ -213,7 +213,7 @@ const Listing = () => {
                             >
                                 <td className="py-4 px-4 flex justify-start">
                                     <img
-                                        src={`https://tolet-server2.vercel.app/image/${flat.flatList.images[0]}`}
+                                        src={`https://tolet-server-mu.vercel.app/image/${flat.flatList.images[0]}`}
                                         alt="Flat"
                                         className="h-16 w-16 object-cover rounded-2xl bg-gray-300"
                                     />

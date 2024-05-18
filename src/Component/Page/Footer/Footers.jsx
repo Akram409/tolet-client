@@ -10,7 +10,7 @@ const Footer = () => {
     
       const footerData = async () => {
         try {
-          const response = await axios.get(`https://tolet-server2.vercel.app/footer`);
+          const response = await axios.get(`https://tolet-server-mu.vercel.app/footer`);
           setFooterInfo(response.data[0]);
         } catch (error) {
           console.log("An error occurred while fetching data.");

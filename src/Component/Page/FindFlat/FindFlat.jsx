@@ -42,9 +42,9 @@ useEffect(() => {
   const fetchData = async () => {
     let url = "";
     if (activeButton === "flat") {
-      url = `https://tolet-server2.vercel.app/flatList?search=${searchValue}&sort=${priceSort}&type=flat`;
+      url = `https://tolet-server-mu.vercel.app/flatList?search=${searchValue}&sort=${priceSort}&type=flat`;
     } else if (activeButton === "sublet") {
-      url = `https://tolet-server2.vercel.app/flatList?search=${searchValue}&sort=${priceSort}&type=sublet`;
+      url = `https://tolet-server-mu.vercel.app/flatList?search=${searchValue}&sort=${priceSort}&type=sublet`;
     }
     const res = await axios.get(url);
     setFlatData(res.data);
@@ -76,7 +76,7 @@ console.log("flatdataUUUU", flatData);
   //     };
   //     console.log("hello", flatData);
       
-  //     await axios.post(`https://tolet-server2.vercel.app/wishList`, flatData);
+  //     await axios.post(`https://tolet-server-mu.vercel.app/wishList`, flatData);
   //     console.log("Added to wishlist:", flat);
   //     message.success("Successfully Added WishList!");
   //   } catch (error) {
@@ -94,7 +94,7 @@ console.log("flatdataUUUU", flatData);
       };
       // console.log("hello", flatData);
   
-      const response = await axios.post(`https://tolet-server2.vercel.app/wishList`, flatData);
+      const response = await axios.post(`https://tolet-server-mu.vercel.app/wishList`, flatData);
       
       if (response.status === 201) {
         // console.log("Added to wishlist:", flat);
@@ -271,7 +271,7 @@ console.log("flatdataUUUU", flatData);
                 </div>
                 <img
                   className="rounded-xl bg-black/40 w-full h-[230px] object-cover md:h-[290px] lg:h-[309px] border border-gray-150"
-                  src={`https://tolet-server2.vercel.app/images/${flat.flatList.images[0]}`}
+                  src={`https://tolet-server-mu.vercel.app/images/${flat.flatList.images[0]}`}
                   alt="Flat Image"
                 />
               </div>
