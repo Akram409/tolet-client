@@ -49,7 +49,7 @@ const MenuDropDown = () => {
             <div className="w-8 rounded-full ">
               <img
                 alt="profile"
-                src={`https://tolet-server2.vercel.app/images/${user?.user_image}`}
+                src={user?.user_image}
               />
             </div>
           </div>
