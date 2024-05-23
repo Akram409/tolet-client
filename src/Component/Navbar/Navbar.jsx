@@ -1,12 +1,25 @@
 import { Link , NavLink,} from "react-router-dom";
 import MenuDropDown from "./MenuDropDown";
 import { GiFamilyHouse } from "react-icons/gi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Navbar = () => {
   const [collapse, setCollapse] = useState(false);
+  const [logo,setLogo] = useState()
 
+  useEffect(() => {
+    fetchLogo();
+  },[])
 
+  const fetchLogo = async () => {
+    try {
+      const response = await axios.get("https://tolet-server2.vercel.app/logo");
+      setLogo(response.data[0]);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
 
   return (
     <div className=" w-full bg-white z-10 shadow-sm lg:px-12 px-4">
@@ -14,7 +27,7 @@ const Navbar = () => {
         <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
           {/* log0 */}
           <Link to="/">
-            <GiFamilyHouse className="md:w-12 lg:h-12 w-10 h-9" />
+            <img src={logo?.imagePath} className="md:w-12 lg:h-12 w-10 h-9" />
           </Link>
    
          {/* menu item  */}

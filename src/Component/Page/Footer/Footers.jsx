@@ -3,22 +3,36 @@ import { useEffect, useState } from "react";
 import { GiFamilyHouse } from "react-icons/gi";
 import { Link } from "react-router-dom";
 const Footer = () => {
-    const [footerInfo, setFooterInfo] = useState({});
-    useEffect(() => {
-        footerData();
-      }, []);
-    
-      const footerData = async () => {
-        try {
-          const response = await axios.get(`https://tolet-server2.vercel.app/footer`);
-          setFooterInfo(response.data[0]);
-        } catch (error) {
-          console.log("An error occurred while fetching data.");
-        }
-      };
-      // console.log(footerInfo);
+  const [footerInfo, setFooterInfo] = useState({});
+  const [logo, setLogo] = useState();
+
+  useEffect(() => {
+    fetchLogo();
+  }, []);
+
+  const fetchLogo = async () => {
+    try {
+      const response = await axios.get("https://tolet-server2.vercel.app/logo");
+      setLogo(response.data[0]);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+  useEffect(() => {
+    footerData();
+  }, []);
+
+  const footerData = async () => {
+    try {
+      const response = await axios.get(`https://tolet-server2.vercel.app/footer`);
+      setFooterInfo(response.data[0]);
+    } catch (error) {
+      console.log("An error occurred while fetching data.");
+    }
+  };
+  // console.log(footerInfo);
   return (
-    <footer className=" bg-gray-50  text-black md:mt-[120px] flex justify-center">
+    <footer className=" bg-[#eeeeee]  text-black mt-[100px] flex justify-center">
       <div className="md:pt-[60px] pt-[30px] md:px-10">
         <d
           iv
@@ -27,7 +41,10 @@ const Footer = () => {
           <div className="">
             <div className="flex justify-center pt-12">
               <Link to="/">
-                <GiFamilyHouse className="md:w-12 lg:h-12 w-10 h-9 flex justify-center " />
+                <img
+                  src={logo?.imagePath}
+                  className="md:w-12 lg:h-12 w-10 h-9 flex justify-center "
+                />
               </Link>
             </div>
             <ul className="md:mt-[40px] mt-[40px] flex justify-center gap-6 sm:justify-start md:gap-8">
@@ -144,7 +161,7 @@ const Footer = () => {
 
               <li>
                 <a
-              href={footerInfo.whatsapp}
+                  href={footerInfo.whatsapp}
                   rel="noreferrer"
                   target="_blank"
                   className="text-text-black transition hover:text-black-700/75"
@@ -193,8 +210,6 @@ const Footer = () => {
                   </svg>
                 </a>
               </li>
-
-              
             </ul>
           </div>
 
@@ -204,13 +219,19 @@ const Footer = () => {
 
               <ul className="mt-8 space-y-8 text-sm">
                 <li>
-                  <a className="text-black transition text-[16px] " href="/about">
+                  <a
+                    className="text-black transition text-[16px] "
+                    href="/about"
+                  >
                     About
                   </a>
                 </li>
 
                 <li>
-                  <a className="text-black transition text-[16px] " href="/contact">
+                  <a
+                    className="text-black transition text-[16px] "
+                    href="/contact"
+                  >
                     Contact
                   </a>
                 </li>
@@ -280,7 +301,6 @@ const Footer = () => {
           <div className="text-[12px] text-gray-400 text-center mb-10">
             &copy; 2023, All right reserved.
           </div>
-         
         </div>
       </div>
     </footer>

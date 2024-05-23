@@ -17,23 +17,23 @@ const MenuDropDown = () => {
 
   return (
     <div className="relative">
-      <div className="flex flex-row items-center gap-3">
-        <div className="hidden md:block">
+      <div className="flex flex-row items-center md:gap-3">
+        <div className="">
           {isAdmin && (
             <Link to="/dashboard">
-              <button className="disabled:cursor-not-allowed cursor-pointer bg-green-400 border border-black py-3 px-4 text-sm font-semibold rounded-full  transition mr-3">
+              <button className="disabled:cursor-not-allowed cursor-pointer bg-green-400 border border-black py-3 px-2 md:px-4 text-sm font-semibold rounded-full  transition mr-3">
                 Dashboard
               </button>
             </Link>
           )}
           <Link to="/createFlatList">
-            <button className="disabled:cursor-not-allowed cursor-pointer bg-green-400 border border-black py-3 px-4 text-sm font-semibold rounded-full  transition">
-              Create new FlatList
+            <button className="disabled:cursor-not-allowed cursor-pointer bg-green-400 border border-black py-3 px-2 md:px-4 text-xs font-semibold   transition">
+            Create flat
             </button>
           </Link>
           <Link to="/createRoommateList">
-            <button className="disabled:cursor-not-allowed ms-2 cursor-pointer bg-green-400 border border-black py-3 px-4 text-sm font-semibold rounded-full  transition">
-              Create new RoommateList
+            <button className="disabled:cursor-not-allowed ms-2 cursor-pointer bg-green-400 border border-black py-3 px-2 md:px-4 text-xs font-semibold  transition">
+            Create roommate listing
             </button>
           </Link>
         </div>
@@ -69,12 +69,12 @@ const MenuDropDown = () => {
               )}
               <Link to="/createFlatList">
                 <button className="block mt-5 lg:mt-0 px-7 py-1 md:hidden text-[10px] disabled:cursor-not-allowed ms-2 cursor-pointer bg-green-400 border border-black lg:py-3 lg:px-4 lg:text-sm font-semibold rounded-full  transition">
-                  Create new FlatList
+                  Create flat
                 </button>
               </Link>
               <Link to="/createRoommateList">
                 <button className="block mt-5 lg:mt-0 px-3 py-1 md:hidden disabled:cursor-not-allowed text-[10px] ms-2 cursor-pointer bg-green-400 border border-black lg:py-3 lg:px-4 lg:text-sm font-semibold rounded-full  transition">
-                  Create new RoommateList
+                Create roommate listing
                 </button>
               </Link>
             </div>

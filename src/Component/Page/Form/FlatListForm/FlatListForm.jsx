@@ -69,13 +69,12 @@ export default function CreateFlatListForm() {
 
   const navigate = useNavigate();
   // console.log("user",auths?.user?.email);
- 
-  //addressChanged Handler
-const closeHandleModal=()=>{
- setOpenModal(false)
- setShowAddress(false)
-}
 
+  //addressChanged Handler
+  const closeHandleModal = () => {
+    setOpenModal(false);
+    setShowAddress(false);
+  };
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -211,7 +210,7 @@ const closeHandleModal=()=>{
 
     return null;
   };
- 
+
   console.log(address, "ggdgsdhgdhj");
   //   console.log(defaultAddress);
   const handleClick = (event) => {
@@ -231,8 +230,6 @@ const closeHandleModal=()=>{
         console.error("Error fetching address:", error);
       });
   };
-
-
 
   React.useEffect(() => {
     if (mapRef.current) {
@@ -281,10 +278,13 @@ const closeHandleModal=()=>{
     </MapContainer>
   );
 
+  const handleDelete = (index) => {
+    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  };
   return (
     <>
       <div className="flex justify-center mt-5">
-        <div className=" w-6/12  md:block hidden">
+        <div className=" md:w-6/12  md:block hidden">
           <Box sx={{ width: "100%" }}>
             <Stepper activeStep={activeStep}>
               {steps.map((labels, index) => {
@@ -328,7 +328,9 @@ const closeHandleModal=()=>{
                     <form>
                       <Grid container spacing={1}>
                         <Grid item sm={12} md={6}>
-                          <InputLabel>Type</InputLabel>
+                          <InputLabel className="formLabel">
+                            Type<span style={{ color: "red" }}>*</span>
+                          </InputLabel>
                           <FormControlLabel
                             control={
                               <Checkbox
@@ -336,6 +338,7 @@ const closeHandleModal=()=>{
                                 onChange={handleChange}
                                 name="flat"
                                 color="primary"
+                                required
                               />
                             }
                             label="Flat"
@@ -347,13 +350,17 @@ const closeHandleModal=()=>{
                                 onChange={handleChange}
                                 name="sublet"
                                 color="primary"
+                                required
                               />
                             }
                             label="Sublet"
                           />
                         </Grid>
                         <Grid item sm={12} md={6}>
-                          <InputLabel>Date</InputLabel>
+                          <InputLabel className="formLabel">
+                            Available From
+                            <span style={{ color: "red" }}>*</span>
+                          </InputLabel>
                           <TextField
                             fullWidth
                             required
@@ -363,7 +370,9 @@ const closeHandleModal=()=>{
                           />
                         </Grid>
                         <Grid item sm={12} md={6}>
-                          <InputLabel>Bedroom</InputLabel>
+                          <InputLabel className="formLabel">
+                            Bedroom<span style={{ color: "red" }}>*</span>
+                          </InputLabel>
                           <div>
                             {[1, 2, 3, 4, 5, 6, 7].map((number) => (
                               <FormControlLabel
@@ -377,6 +386,7 @@ const closeHandleModal=()=>{
                                     name="bedroom"
                                     value={number.toString()}
                                     color="primary"
+                                    required
                                   />
                                 }
                                 label={number}
@@ -385,7 +395,9 @@ const closeHandleModal=()=>{
                           </div>
                         </Grid>
                         <Grid item sm={12} md={6}>
-                          <InputLabel>Bathroom</InputLabel>
+                          <InputLabel className="formLabel">
+                            Bathroom<span style={{ color: "red" }}>*</span>
+                          </InputLabel>
                           <div>
                             {[1, 2, 3, 4, 5, 6, 7].map((number) => (
                               <FormControlLabel
@@ -399,6 +411,7 @@ const closeHandleModal=()=>{
                                     name="bathroom"
                                     value={number.toString()}
                                     color="primary"
+                                    required
                                   />
                                 }
                                 label={number}
@@ -407,7 +420,9 @@ const closeHandleModal=()=>{
                           </div>
                         </Grid>
                         <Grid item sm={12} md={6}>
-                          <InputLabel>Size (sqft)</InputLabel>
+                          <InputLabel className="formLabel">
+                            Size (sqft)<span style={{ color: "red" }}>*</span>
+                          </InputLabel>
                           <TextField
                             required
                             fullWidth
@@ -420,7 +435,9 @@ const closeHandleModal=()=>{
                           />
                         </Grid>
                         <Grid item sm={12} md={6}>
-                          <InputLabel>Rent</InputLabel>
+                          <InputLabel className="formLabel">
+                            Rent<span style={{ color: "red" }}>*</span>
+                          </InputLabel>
                           <TextField
                             required
                             fullWidth
@@ -434,8 +451,11 @@ const closeHandleModal=()=>{
                         </Grid>
 
                         <Grid item sm={12} md={6}>
-                          <InputLabel>City</InputLabel>
+                          <InputLabel className="formLabel">
+                            City<span style={{ color: "red" }}>*</span>
+                          </InputLabel>
                           <FormControl
+                            required
                             sx={{
                               width: "100%",
                               "@media (max-width: 768px)": {
@@ -460,40 +480,39 @@ const closeHandleModal=()=>{
                               ))}
                             </Select>
                             <FormHelperText>Select a district</FormHelperText>
-                              
                           </FormControl>
                         </Grid>
-                        {
-                          <Grid item sm={12} md={6}>
-                            <InputLabel>Address</InputLabel>
+                        <Grid item sm={12} md={6}>
+                          <InputLabel className="formLabel">
+                            Address<span style={{ color: "red" }}>*</span>
+                          </InputLabel>
 
-                            {showAddress ? (
-                              <TextField
-                                required
-                                fullWidth
-                                value={address}
-                                id="name"
-                                name="address"
-                                placeholder="Address"
-                              />
-                            ) : (
-                              <input
-                                required
-                                fullWidth
-                                id="name"
-                                name="address"
-                                className="w-full px-5 py-3.5 border rounded-md"
-                                placeholder="Enter Your Address"
-                                onChange={(e) => setAddress(e.target.value)}
-                              />
-                            )}
-                          
-                          </Grid>
-                        }
+                          {showAddress ? (
+                            <TextField
+                              required
+                              fullWidth
+                              value={address}
+                              id="name"
+                              name="address"
+                              placeholder="Address"
+                            />
+                          ) : (
+                            <input
+                              required
+                              fullWidth
+                              id="name"
+                              name="address"
+                              className="w-full px-5 py-3.5 border rounded-md"
+                              placeholder="Enter Your Address"
+                              onChange={(e) => setAddress(e.target.value)}
+                            />
+                          )}
+                        </Grid>
                         <Grid item sm={12} md={12}>
-                          <InputLabel>Zip Code</InputLabel>
+                          <InputLabel className="formLabel">
+                            Zip Code
+                          </InputLabel>
                           <TextField
-                            required
                             fullWidth
                             id="number"
                             name="postalCode"
@@ -520,7 +539,7 @@ const closeHandleModal=()=>{
                                   src="https://i.ibb.co/GJcs8tx/upload.png"
                                   alt="upload image"
                                 />
-                                <p>Drag your images here </p>
+                                <p>Drag your images here</p>
                                 <p className="text-gray-600 text-xs">
                                   Only *.jpeg, *.webp and *.png images will be
                                   accepted
@@ -534,6 +553,38 @@ const closeHandleModal=()=>{
                                 onChange={handleChange}
                               />
                             </label>
+                          </div>
+                        </Grid>
+                        {/* Render uploaded images */}
+                        <Grid item sm={12} md={12}>
+                          <div className="grid grid-cols-4 gap-4">
+                            {images.map((image, index) => (
+                              <div key={index} className="relative">
+                                <img
+                                  src={URL.createObjectURL(image)}
+                                  alt={`Uploaded ${index}`}
+                                  className="w-full h-full object-cover border-2"
+                                />
+                                <button
+                                  type="button"
+                                  className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                                  onClick={() => handleDelete(index)}
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-4 w-4"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12zm-1.414-7.586a1 1 0 011.414-1.414L10 8.586l1.414-1.414a1 1 0 111.414 1.414L11.414 10l1.414 1.414a1 1 0 11-1.414 1.414L10 11.414l-1.414 1.414a1 1 0 01-1.414-1.414L8.586 10l-1.414-1.414z"
+                                      clipRule="evenodd"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
+                            ))}
                           </div>
                         </Grid>
                       </Grid>
@@ -552,7 +603,10 @@ const closeHandleModal=()=>{
                           >
                             <Grid container spacing={1}>
                               <Grid item sm={12} md={12}>
-                                <InputLabel>First Name</InputLabel>
+                                <InputLabel className="formLabel">
+                                  First Name{" "}
+                                  <span className="text-red-500">*</span>
+                                </InputLabel>
                                 <TextField
                                   required
                                   fullWidth
@@ -563,9 +617,10 @@ const closeHandleModal=()=>{
                                 />
                               </Grid>
                               <Grid item sm={12} md={12}>
-                                <InputLabel>Last Name</InputLabel>
+                                <InputLabel className="formLabel">
+                                  Last Name
+                                </InputLabel>
                                 <TextField
-                                  required
                                   fullWidth
                                   name="lastName"
                                   type="text"
@@ -573,7 +628,10 @@ const closeHandleModal=()=>{
                                 />
                               </Grid>
                               <Grid item sm={12} md={12}>
-                                <InputLabel>Address</InputLabel>
+                                <InputLabel className="formLabel">
+                                  Address{" "}
+                                  <span className="text-red-500">*</span>
+                                </InputLabel>
                                 <TextField
                                   required
                                   fullWidth
@@ -585,7 +643,10 @@ const closeHandleModal=()=>{
                                 />
                               </Grid>
                               <Grid item sm={12} md={6}>
-                                <InputLabel>Enter City</InputLabel>
+                                <InputLabel className="formLabel">
+                                  Enter City{" "}
+                                  <span className="text-red-500">*</span>
+                                </InputLabel>
                                 <TextField
                                   required
                                   fullWidth
@@ -596,9 +657,10 @@ const closeHandleModal=()=>{
                                 />
                               </Grid>
                               <Grid item sm={12} md={12}>
-                                <InputLabel>Zip Code</InputLabel>
+                                <InputLabel className="formLabel">
+                                  Zip Code
+                                </InputLabel>
                                 <TextField
-                                  required
                                   fullWidth
                                   id="number"
                                   name="userPostalCode"
@@ -610,7 +672,10 @@ const closeHandleModal=()=>{
                                 />
                               </Grid>
                               <Grid item sm={12} md={12}>
-                                <InputLabel>Contact Number</InputLabel>
+                                <InputLabel className="formLabel">
+                                  Contact Number{" "}
+                                  <span className="text-red-500">*</span>
+                                </InputLabel>
                                 <TextField
                                   required
                                   fullWidth
@@ -648,7 +713,6 @@ const closeHandleModal=()=>{
                             address &&
                             images.length > 0 &&
                             formData.firstName &&
-                            formData.lastName &&
                             formData.userCity &&
                             formData.phone &&
                             image ? (
@@ -667,7 +731,7 @@ const closeHandleModal=()=>{
                             ) : (
                               <button
                                 disabled
-                                className="bg-gray-300 w-full py-2 px-3 my-2"
+                                className="bg-gray-300 w-full py-2 px-3 my-2 cursor-not-allowed"
                               >
                                 Submit
                               </button>
@@ -694,7 +758,7 @@ const closeHandleModal=()=>{
                     Back
                   </Button>
                   <Box sx={{ flex: "1 1 auto" }} />
-                 
+
                   {activeStep === 0 &&
                     formData.type &&
                     formData.date &&
@@ -719,7 +783,7 @@ const closeHandleModal=()=>{
           </Box>
         </div>
       </div>
-      <div className="flex justify-center">
+      <div className="flex ml-10 md:justify-center">
         <div className="md:hidden overflow-hidden">
           <Box sx={{ maxWidth: 270 }}>
             <Stepper activeStep={activeStep} orientation="vertical">
@@ -740,7 +804,9 @@ const closeHandleModal=()=>{
                         <form>
                           <Grid container spacing={1}>
                             <Grid item sm={12} md={6}>
-                              <InputLabel>Type</InputLabel>
+                              <InputLabel className="formLabel">
+                                Type
+                              </InputLabel>
                               <FormControlLabel
                                 control={
                                   <Checkbox
@@ -765,7 +831,9 @@ const closeHandleModal=()=>{
                               />
                             </Grid>
                             <Grid item sm={12} md={6}>
-                              <InputLabel>Date</InputLabel>
+                              <InputLabel className="formLabel">
+                                Date
+                              </InputLabel>
                               <TextField
                                 required
                                 fullWidth
@@ -775,7 +843,9 @@ const closeHandleModal=()=>{
                               />
                             </Grid>
                             <Grid item sm={12} md={6}>
-                              <InputLabel>Bedroom</InputLabel>
+                              <InputLabel className="formLabel">
+                                Bedroom
+                              </InputLabel>
                               <div>
                                 {[1, 2, 3, 4, 5, 6, 7].map((number) => (
                                   <FormControlLabel
@@ -797,7 +867,9 @@ const closeHandleModal=()=>{
                               </div>
                             </Grid>
                             <Grid item sm={12} md={6}>
-                              <InputLabel>Bathroom</InputLabel>
+                              <InputLabel className="formLabel">
+                                Bathroom
+                              </InputLabel>
                               <div>
                                 {[1, 2, 3, 4, 5, 6, 7].map((number) => (
                                   <FormControlLabel
@@ -819,7 +891,9 @@ const closeHandleModal=()=>{
                               </div>
                             </Grid>
                             <Grid item sm={12} md={6}>
-                              <InputLabel>Size (sqft)</InputLabel>
+                              <InputLabel className="formLabel">
+                                Size (sqft)
+                              </InputLabel>
                               <TextField
                                 required
                                 fullWidth
@@ -832,7 +906,9 @@ const closeHandleModal=()=>{
                               />
                             </Grid>
                             <Grid item sm={12} md={6}>
-                              <InputLabel>Rent</InputLabel>
+                              <InputLabel className="formLabel">
+                                Rent
+                              </InputLabel>
                               <TextField
                                 required
                                 fullWidth
@@ -844,9 +920,11 @@ const closeHandleModal=()=>{
                                 onChange={handleChange}
                               />
                             </Grid>
-                         
+
                             <Grid item sm={12} md={6}>
-                              <InputLabel>City</InputLabel>
+                              <InputLabel className="formLabel">
+                                City
+                              </InputLabel>
                               <FormControl
                                 sx={{
                                   width: "100%",
@@ -878,34 +956,37 @@ const closeHandleModal=()=>{
                               </FormControl>
                             </Grid>
                             {
-                          <Grid item sm={12} md={6}>
-                            <InputLabel>Address</InputLabel>
+                              <Grid item sm={12} md={6}>
+                                <InputLabel className="formLabel">
+                                  Address
+                                </InputLabel>
 
-                            {showAddress ? (
-                              <TextField
-                                required
-                                fullWidth
-                                value={address}
-                                id="name"
-                                name="address"
-                                placeholder="Address"
-                              />
-                            ) : (
-                              <input
-                                required
-                                fullWidth
-                                id="name"
-                                name="address"
-                                className="w-full px-5 py-3.5 border rounded-md"
-                                placeholder="Enter Your Address"
-                                onChange={(e) => setAddress(e.target.value)}
-                              />
-                            )}
-
-                          </Grid>
-                        }
+                                {showAddress ? (
+                                  <TextField
+                                    required
+                                    fullWidth
+                                    value={address}
+                                    id="name"
+                                    name="address"
+                                    placeholder="Address"
+                                  />
+                                ) : (
+                                  <input
+                                    required
+                                    fullWidth
+                                    id="name"
+                                    name="address"
+                                    className="w-full px-5 py-3.5 border rounded-md"
+                                    placeholder="Enter Your Address"
+                                    onChange={(e) => setAddress(e.target.value)}
+                                  />
+                                )}
+                              </Grid>
+                            }
                             <Grid item sm={12} md={12}>
-                              <InputLabel>Zip Code</InputLabel>
+                              <InputLabel className="formLabel">
+                                Zip Code
+                              </InputLabel>
                               <TextField
                                 required
                                 fullWidth
@@ -950,13 +1031,45 @@ const closeHandleModal=()=>{
                                 </label>
                               </div>
                             </Grid>
+                            {/* Render uploaded images */}
+                            <Grid item sm={12} md={12}>
+                              <div className="grid grid-cols-4 gap-4">
+                                {images.map((image, index) => (
+                                  <div key={index} className="relative">
+                                    <img
+                                      src={URL.createObjectURL(image)}
+                                      alt={`Uploaded ${index}`}
+                                      className="w-full h-full object-cover border-2"
+                                    />
+                                    <button
+                                      type="button"
+                                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                                      onClick={() => handleDelete(index)}
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-4 w-4"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                      >
+                                        <path
+                                          fillRule="evenodd"
+                                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12zm-1.414-7.586a1 1 0 011.414-1.414L10 8.586l1.414-1.414a1 1 0 111.414 1.414L11.414 10l1.414 1.414a1 1 0 11-1.414 1.414L10 11.414l-1.414 1.414a1 1 0 01-1.414-1.414L8.586 10l-1.414-1.414z"
+                                          clipRule="evenodd"
+                                        />
+                                      </svg>
+                                    </button>
+                                  </div>
+                                ))}
+                              </div>
+                            </Grid>
                           </Grid>
                         </form>
                       )}
 
                       {index === 2 && (
                         <form>
-                          <div className="flex justify-center gap-6 mt-12">
+                          <div className="flex md:justify-center gap-6 mt-12">
                             <Paper>
                               <Box
                                 component="form"
@@ -968,7 +1081,9 @@ const closeHandleModal=()=>{
                               >
                                 <Grid container spacing={1}>
                                   <Grid item sm={12} md={12}>
-                                    <InputLabel>First Name</InputLabel>
+                                    <InputLabel className="formLabel">
+                                      First Name
+                                    </InputLabel>
                                     <TextField
                                       required
                                       fullWidth
@@ -979,7 +1094,9 @@ const closeHandleModal=()=>{
                                     />
                                   </Grid>
                                   <Grid item sm={12} md={12}>
-                                    <InputLabel>Last Name</InputLabel>
+                                    <InputLabel className="formLabel">
+                                      Last Name
+                                    </InputLabel>
                                     <TextField
                                       required
                                       fullWidth
@@ -990,7 +1107,9 @@ const closeHandleModal=()=>{
                                   </Grid>
 
                                   <Grid item sm={12} md={6}>
-                                    <InputLabel>City</InputLabel>
+                                    <InputLabel className="formLabel">
+                                      City
+                                    </InputLabel>
                                     <TextField
                                       required
                                       fullWidth
@@ -1001,7 +1120,9 @@ const closeHandleModal=()=>{
                                     />
                                   </Grid>
                                   <Grid item sm={12} md={12}>
-                                    <InputLabel>Address</InputLabel>
+                                    <InputLabel className="formLabel">
+                                      Address
+                                    </InputLabel>
                                     <TextField
                                       required
                                       fullWidth
@@ -1013,7 +1134,9 @@ const closeHandleModal=()=>{
                                     />
                                   </Grid>
                                   <Grid item sm={12} md={12}>
-                                    <InputLabel>Zip Code</InputLabel>
+                                    <InputLabel className="formLabel">
+                                      Zip Code
+                                    </InputLabel>
                                     <TextField
                                       required
                                       fullWidth
@@ -1027,7 +1150,9 @@ const closeHandleModal=()=>{
                                     />
                                   </Grid>
                                   <Grid item sm={12} md={12}>
-                                    <InputLabel>Contact Number</InputLabel>
+                                    <InputLabel className="formLabel">
+                                      Contact Number
+                                    </InputLabel>
                                     <TextField
                                       required
                                       fullWidth
@@ -1056,39 +1181,39 @@ const closeHandleModal=()=>{
                                   </Grid>
                                 </Grid>
                                 {formData.type &&
-                            formData.date &&
-                            formData.bedroom &&
-                            formData.bathroom &&
-                            formData.size &&
-                            formData.rent &&
-                            cityName &&
-                            address &&
-                            images.length > 0 &&
-                            formData.firstName &&
-                            formData.lastName &&
-                            formData.userCity &&
-                            formData.phone &&
-                            image ? (
-                              <Button
-                                type="submit"
-                                fullWidth
-                                onClick={handleSubmit}
-                                variant="contained"
-                                sx={{
-                                  mt: 3,
-                                  mb: 2,
-                                }}
-                              >
-                                Submit
-                              </Button>
-                            ) : (
-                              <button
-                                disabled
-                                className="bg-gray-300 w-full py-2 px-3 my-2"
-                              >
-                                Submit
-                              </button>
-                            )}
+                                formData.date &&
+                                formData.bedroom &&
+                                formData.bathroom &&
+                                formData.size &&
+                                formData.rent &&
+                                cityName &&
+                                address &&
+                                images.length > 0 &&
+                                formData.firstName &&
+                                formData.lastName &&
+                                formData.userCity &&
+                                formData.phone &&
+                                image ? (
+                                  <Button
+                                    type="submit"
+                                    fullWidth
+                                    onClick={handleSubmit}
+                                    variant="contained"
+                                    sx={{
+                                      mt: 3,
+                                      mb: 2,
+                                    }}
+                                  >
+                                    Submit
+                                  </Button>
+                                ) : (
+                                  <button
+                                    disabled
+                                    className="bg-gray-300 w-full py-2 px-3 my-2"
+                                  >
+                                    Submit
+                                  </button>
+                                )}
                               </Box>
                             </Paper>
                           </div>
@@ -1098,32 +1223,33 @@ const closeHandleModal=()=>{
                     </div>
                     <Box sx={{ mb: 2 }}>
                       <div>
-                      <Button
+                        <Button
                           disabled={index === 0}
                           onClick={handleBack}
                           sx={{ mt: 1, mr: 1 }}
                         >
                           Back
                         </Button>
-                      {index === 0 &&
-                    formData.type &&
-                    formData.date &&
-                    formData.bedroom &&
-                    formData.bathroom &&
-                    formData.size &&
-                    formData.rent &&
-                    cityName &&
-                    address && (
-                      <Button onClick={handleNext1}>
-                        {index === steps.length - 1 ? "Finish" : "Next"}
-                      </Button>
-                    )}
-                  {activeStep === 1 && images.length > 0 && (
-                    <Button onClick={handleNext1}>
-                      {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                    </Button>
-                  )}
-                       
+                        {index === 0 &&
+                          formData.type &&
+                          formData.date &&
+                          formData.bedroom &&
+                          formData.bathroom &&
+                          formData.size &&
+                          formData.rent &&
+                          cityName &&
+                          address && (
+                            <Button onClick={handleNext1}>
+                              {index === steps.length - 1 ? "Finish" : "Next"}
+                            </Button>
+                          )}
+                        {activeStep === 1 && images.length > 0 && (
+                          <Button onClick={handleNext1}>
+                            {activeStep === steps.length - 1
+                              ? "Finish"
+                              : "Next"}
+                          </Button>
+                        )}
                       </div>
                     </Box>
                   </StepContent>
@@ -1158,12 +1284,17 @@ const closeHandleModal=()=>{
                 : "scale-0 opacity-0 duration-150"
             }`}
           >
-           <div className="flex justify-end mb-3">
-           <button onClick={closeHandleModal} className=" rounded-md border border-rose-600 px-6 py-[6px] text-rose-600 duration-150 hover:bg-rose-600 hover:text-white">
+            <div className="flex justify-end mb-3">
+              <button
+                onClick={closeHandleModal}
+                className=" rounded-md border border-rose-600 px-6 py-[6px] text-rose-600 duration-150 hover:bg-rose-600 hover:text-white"
+              >
                 X
               </button>
-           </div>
-            <div className="w-72 md:max-w-[500px] lg:max-w-[700px] md:w-[700px]">{map}</div>
+            </div>
+            <div className="w-72 md:max-w-[500px] lg:max-w-[700px] md:w-[700px]">
+              {map}
+            </div>
           </div>
         </div>
       </div>

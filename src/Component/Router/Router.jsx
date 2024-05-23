@@ -31,6 +31,9 @@ import WishListDetails from "../Page/Wishlist/WishListDetails";
 import Wishlist from "../Page/Wishlist/Wishlist";
 import AdminRoute from "./AdminRoute";
 import PrivateRouter from "./PrivateRouter";
+import Logoupdate from "../DashboardRoutes/Logoupdate";
+
+
 
 export const router = createBrowserRouter([
     {
@@ -207,6 +210,16 @@ export const router = createBrowserRouter([
                     <AdminRoute>
                         <PrivateRouter>
                             <ReportListing />
+                        </PrivateRouter>
+                    </AdminRoute>
+                ),
+            },
+            {
+                path: "/dashboard/logoChange",
+                element: (
+                    <AdminRoute>
+                        <PrivateRouter>
+                            <Logoupdate />
                         </PrivateRouter>
                     </AdminRoute>
                 ),

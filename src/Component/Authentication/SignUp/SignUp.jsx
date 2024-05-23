@@ -18,6 +18,7 @@ const SignUp = () => {
   const from = location.state?.from?.pathname || "/";
   console.log("🚀 ~ SignUp ~ from:", from)
   const [fileList, setFileList] = useState([]);
+  console.log("🚀 ~ SignUp ~ fileList:", fileList)
 
   if (navigation.state === "loading") {
     return <progress className="progress w-56"></progress>;
