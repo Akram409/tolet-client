@@ -63,7 +63,7 @@ const DashNav = ({ toggleSidebar }) => {
                 <Link to="/dashboard/userProfile" className="text-[15px]"><span><HiOutlineHome></HiOutlineHome></span>Main Page</Link>
               </li>
               <li className="hover:bg-[#002172] transition-all ease-out duration-300 hover:text-white">
-                <a href="http://localhost:5174/" target="blank" className="text-[15px]"><span><MdOutlineAdminPanelSettings></MdOutlineAdminPanelSettings></span>Admin Panel</a>
+                <a href="https://to-lets.netlify.app/" target="blank" className="text-[15px]"><span><MdOutlineAdminPanelSettings></MdOutlineAdminPanelSettings></span>Admin Panel</a>
               </li>
               <li className="hover:bg-[#002172] transition-all ease-out duration-300 hover:text-white">
                 <Link onClick={handleLogOut} className="text-[15px]"><span><TbLogout className="text-[#e33226]"></TbLogout></span>Logout</Link>
