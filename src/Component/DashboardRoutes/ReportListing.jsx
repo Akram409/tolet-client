@@ -13,7 +13,7 @@ const ReportListing = () => {
 
   const getReportList = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/reports`);
+      const response = await axios.get(`https://tolet-server2.vercel.app/reports`);
       setReportListData(response.data);
     } catch (error) {
       console.error("Error fetching flat details:", error);
@@ -22,7 +22,7 @@ const ReportListing = () => {
  
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/reportLists/${id}`);
+      await axios.delete(`https://tolet-server2.vercel.app/reportLists/${id}`);
       setReportListData((prevData) => prevData.filter((item) => item._id !== id));
       getReportList()
       message.success("Delete successfully!");
@@ -72,7 +72,7 @@ const ReportListing = () => {
               >
                 <td className="py-4 px-4 flex justify-start">
                   <img
-                    src={`http://localhost:5000/image/${flat?.flatWishList?.images}`}
+                    src={`https://tolet-server2.vercel.app/image/${flat?.flatWishList?.images}`}
                     alt="Flat"
                     className="h-16 w-16 object-cover rounded-2xl bg-gray-300"
                   />

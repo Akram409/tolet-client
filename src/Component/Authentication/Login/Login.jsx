@@ -19,7 +19,7 @@ const Login = () => {
   useEffect(() => {
     const fetchAllUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/users");
+        const response = await axios.get("https://tolet-server2.vercel.app/users");
         setAllUser(response.data);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -64,7 +64,7 @@ const Login = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:5000/user",
+          "https://tolet-server2.vercel.app/user",
           saveUser,
           {
             headers: {
@@ -108,7 +108,7 @@ const Login = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:5000/user",
+          "https://tolet-server2.vercel.app/user",
           saveUser,
           {
             headers: {

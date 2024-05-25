@@ -11,7 +11,7 @@ export const AllUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/users?searchValue=${searchValue}`);
+      const res = await axios.get(`https://tolet-server2.vercel.app/users?searchValue=${searchValue}`);
       setAllUsers(res.data);
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -30,7 +30,7 @@ export const AllUsers = () => {
     };
   const handleDelete = async (userId) => {
     try {
-      const res = await axios.delete(`http://localhost:5000/delete/${userId}`);
+      const res = await axios.delete(`https://tolet-server2.vercel.app/delete/${userId}`);
       console.log(res.data.message); 
       message.success("Delete successfully!");
       fetchUsers();

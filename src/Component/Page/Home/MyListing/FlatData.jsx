@@ -26,9 +26,9 @@ const FlatData = () => {
     try {
       let url = "";
       if (activeButton === "flat") {
-        url = `http://localhost:5000/flatList/${email}?type=flat`;
+        url = `https://tolet-server2.vercel.app/flatList/${email}?type=flat`;
       } else if (activeButton === "sublet") {
-        url = `http://localhost:5000/flatList/${email}?type=sublet`;
+        url = `https://tolet-server2.vercel.app/flatList/${email}?type=sublet`;
       }
 
       const roommateResponse = await axios.get(url);
@@ -110,7 +110,7 @@ const FlatData = () => {
       const flatId = subletData._id;
       console.log("flatId", flatId);
       const response = await axios.patch(
-        `http://localhost:5000/flatList/${flatId}`,
+        `https://tolet-server2.vercel.app/flatList/${flatId}`,
         formDataToSend
       );
       alert("Flat list updated successfully");
@@ -123,7 +123,7 @@ const FlatData = () => {
 
   const handleDeleteFlat = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/flat/${id}`);
+      const response = await axios.delete(`https://tolet-server2.vercel.app/flat/${id}`);
       if (response.status === 200) {
         alert("Flat deleted successfully.");
         fetchData();
@@ -270,7 +270,7 @@ const FlatData = () => {
                     <div className="flex justify-end items-center left-4 right-4 top-4 absolute"></div>
                     <img
                       className="rounded-xl bg-black/40 object-cover w-full h-[230px] md:h-[290px] lg:h-[309px] border border-gray-150"
-                      src={`http://localhost:5000/images/${flat.flatList.images[0]}`}
+                      src={`https://tolet-server2.vercel.app/images/${flat.flatList.images[0]}`}
                       alt="Flat Image"
                     />
                   </div>

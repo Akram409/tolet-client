@@ -17,7 +17,7 @@ export const CustomizeContent = () => {
     const description = e.target.description.value;
     // console.log("Description:", description);
     try {
-      const response = await axios.post("http://localhost:5000/api/about", {
+      const response = await axios.post("https://tolet-server2.vercel.app/api/about", {
         description,
       });
       console.log("Response:", response.data);
@@ -33,7 +33,7 @@ export const CustomizeContent = () => {
 
   const aboutData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/about`);
+      const response = await axios.get(`https://tolet-server2.vercel.app/about`);
       setAboutInfo(response.data[0]);
     } catch (error) {
       console.log("An error occurred while fetching data.");
@@ -48,7 +48,7 @@ export const CustomizeContent = () => {
       const id = aboutInfo._id;
       console.log(id);
       const response = await axios.patch(
-        `http://localhost:5000/about/${aboutInfo._id}`,
+        `https://tolet-server2.vercel.app/about/${aboutInfo._id}`,
         {
           description: updatedDescription,
         }
@@ -84,7 +84,7 @@ export const CustomizeContent = () => {
 
     try {
       // Send form data to backend
-      const response = await fetch("http://localhost:5000/footer", {
+      const response = await fetch("https://tolet-server2.vercel.app/footer", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -106,7 +106,7 @@ export const CustomizeContent = () => {
 
   const footerData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/footer`);
+      const response = await axios.get(`https://tolet-server2.vercel.app/footer`);
       setFooterInfo(response.data[0]);
     } catch (error) {
       console.log("An error occurred while fetching data.");
@@ -128,7 +128,7 @@ export const CustomizeContent = () => {
   
     try {
       const footerId = footerInfo._id
-      const response = await fetch(`http://localhost:5000/footer/${footerId}`, {
+      const response = await fetch(`https://tolet-server2.vercel.app/footer/${footerId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

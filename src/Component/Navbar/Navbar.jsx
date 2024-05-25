@@ -14,7 +14,7 @@ const Navbar = () => {
 
   const fetchLogo = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/logo");
+      const response = await axios.get("https://tolet-server2.vercel.app/logo");
       setLogo(response.data[0]);
     } catch (error) {
       console.error("Error fetching users:", error);

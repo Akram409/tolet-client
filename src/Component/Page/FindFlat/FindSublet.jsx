@@ -42,9 +42,9 @@ const FindSublet = () => {
     const fetchData = async () => {
       let url = "";
       if (activeButton === "flat") {
-        url = `http://localhost:5000/flatList?location=${searchValue}&sort=${priceSort}&type=flat`;
+        url = `https://tolet-server2.vercel.app/flatList?location=${searchValue}&sort=${priceSort}&type=flat`;
       } else if (activeButton === "sublet") {
-        url = `http://localhost:5000/flatList?location=${searchValue}&sort=${priceSort}&type=sublet`;
+        url = `https://tolet-server2.vercel.app/flatList?location=${searchValue}&sort=${priceSort}&type=sublet`;
       }
       const res = await axios.get(url);
       setFlatData(res.data);
@@ -79,7 +79,7 @@ const FindSublet = () => {
         };
         // console.log("hello", flatData);
     
-        const response = await axios.post(`http://localhost:5000/wishList`, flatData);
+        const response = await axios.post(`https://tolet-server2.vercel.app/wishList`, flatData);
         
         if (response.status === 201) {
           // console.log("Added to wishlist:", flat);
@@ -252,7 +252,7 @@ const FindSublet = () => {
                   </div>
                   <img
                     className="rounded-xl bg-black/40 w-full object-cover h-[230px] md:h-[290px] lg:h-[309px] border border-gray-150"
-                    src={`http://localhost:5000/images/${flat.flatList.images[0]}`}
+                    src={`https://tolet-server2.vercel.app/images/${flat.flatList.images[0]}`}
                     alt="Flat Image"
                   />
                 </div>
