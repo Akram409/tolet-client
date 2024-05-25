@@ -150,7 +150,7 @@ export default function CreateFlatListForm() {
         formDataToSend.append("images", images);
       });
       console.log(formData);
-      const response = await fetch("https://tolet-server2.vercel.app/add/flatList", {
+      const response = await fetch("http://localhost:5000/add/flatList", {
         method: "POST",
         body: formDataToSend,
       });

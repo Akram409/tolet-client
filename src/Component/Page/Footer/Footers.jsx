@@ -12,7 +12,7 @@ const Footer = () => {
 
   const fetchLogo = async () => {
     try {
-      const response = await axios.get("https://tolet-server2.vercel.app/logo");
+      const response = await axios.get("http://localhost:5000/logo");
       setLogo(response.data[0]);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -24,7 +24,7 @@ const Footer = () => {
 
   const footerData = async () => {
     try {
-      const response = await axios.get(`https://tolet-server2.vercel.app/footer`);
+      const response = await axios.get(`http://localhost:5000/footer`);
       setFooterInfo(response.data[0]);
     } catch (error) {
       console.log("An error occurred while fetching data.");

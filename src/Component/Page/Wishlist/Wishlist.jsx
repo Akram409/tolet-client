@@ -16,7 +16,7 @@ const Wishlist = () => {
   const getWishList = async () => {
     try {
       const response = await axios.get(
-        `https://tolet-server2.vercel.app/wishlist/${user?.email}`
+        `http://localhost:5000/wishlist/${user?.email}`
       );
       setListData(response.data);
     } catch (error) {
@@ -26,7 +26,7 @@ const Wishlist = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://tolet-server2.vercel.app/wishlists/${id}`);
+      await axios.delete(`http://localhost:5000/wishlists/${id}`);
       setListData((prevData) => prevData.filter((item) => item._id !== id));
       getWishList()
       message.success("Delete successfully!");
@@ -48,7 +48,7 @@ const Wishlist = () => {
                 
                 <img
                   className="rounded-xl bg-black/40 w-full object-cover h-[230px] md:h-[290px] lg:h-[309px] border border-gray-150"
-                  src={`https://tolet-server2.vercel.app/images/${
+                  src={`http://localhost:5000/images/${
                     item.flatWishList
                       ? item.flatWishList.flatList.images[0]
                       : item.roommateWishList.roomateList.images[0]

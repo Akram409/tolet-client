@@ -83,7 +83,7 @@ export const router = createBrowserRouter([
             {
                 path: "/flatDetails/:id",
                 loader: ({ params }) =>
-                    axios.get(`https://tolet-server2.vercel.app/flatDetails/${params.id}`),
+                    axios.get(`http://localhost:5000/flatDetails/${params.id}`),
                 element: (
                     <PrivateRouter>
                         <FlatDetails />
@@ -93,7 +93,7 @@ export const router = createBrowserRouter([
             {
                 path: "/roommateDetails/:id",
                 loader: ({ params }) =>
-                    axios.get(`https://tolet-server2.vercel.app/roommate/${params.id}`),
+                    axios.get(`http://localhost:5000/roommate/${params.id}`),
                 element: (
                     <PrivateRouter>
                         {" "}
@@ -136,7 +136,7 @@ export const router = createBrowserRouter([
             {
                 path: "/listDetails/:id",
                 loader: ({ params }) =>
-                    axios.get(`https://tolet-server2.vercel.app/wish/${params.id}`),
+                    axios.get(`http://localhost:5000/wish/${params.id}`),
                 element: <WishListDetails />,
             },
         ],

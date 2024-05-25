@@ -14,7 +14,7 @@ const ForgetPassword = () => {
 
       try {
         const response = await axios.post(
-          `https://tolet-server2.vercel.app/forgot-password/${email}`
+          `http://localhost:5000/forgot-password/${email}`
         );
         if (response.data.Status === "Success") {
           message.success("Password reset link sent successfully.");

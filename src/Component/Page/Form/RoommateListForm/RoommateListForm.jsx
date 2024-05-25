@@ -185,7 +185,7 @@ export default function CreateFlatListForm() {
       });
       console.log("ggggggggggggggg", formDataToSend);
 
-      const response = await fetch("https://tolet-server2.vercel.app/add/roommateList", {
+      const response = await fetch("http://localhost:5000/add/roommateList", {
         method: "POST",
         body: formDataToSend,
       });
@@ -653,6 +653,37 @@ export default function CreateFlatListForm() {
                                 onChange={handleChange}
                               />
                             </label>
+                          </div>
+                        </Grid>
+                        <Grid item sm={12} md={12}>
+                          <div className="grid grid-cols-4 gap-4">
+                            {images.map((image, index) => (
+                              <div key={index} className="relative">
+                                <img
+                                  src={URL.createObjectURL(image)}
+                                  alt={`Uploaded ${index}`}
+                                  className="w-full h-full object-cover border-2"
+                                />
+                                <button
+                                  type="button"
+                                  className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                                  onClick={() => handleDelete(index)}
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-4 w-4"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12zm-1.414-7.586a1 1 0 011.414-1.414L10 8.586l1.414-1.414a1 1 0 111.414 1.414L11.414 10l1.414 1.414a1 1 0 11-1.414 1.414L10 11.414l-1.414 1.414a1 1 0 01-1.414-1.414L8.586 10l-1.414-1.414z"
+                                      clipRule="evenodd"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
+                            ))}
                           </div>
                         </Grid>
                       </Grid>

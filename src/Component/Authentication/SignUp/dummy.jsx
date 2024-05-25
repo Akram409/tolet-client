@@ -37,7 +37,7 @@ const SignUp = () => {
         "content-type": "multipart/form-data",
       },
     };
-    const url = "https://tolet-server2.vercel.app/signup";
+    const url = "http://localhost:5000/signup";
     try {
       const response = await axios.post(url, data, config);
       setAuths(response.data.user);
@@ -103,7 +103,7 @@ const SignUp = () => {
         };
         console.log(saveUser);
         axios
-          .post("https://tolet-server2.vercel.app/user", saveUser, {
+          .post("http://localhost:5000/user", saveUser, {
             headers: {
               "Content-Type": "application/json",
             },

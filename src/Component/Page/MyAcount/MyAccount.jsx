@@ -39,7 +39,7 @@ const MyAccount = () => {
       formDataToSend.append("isUpdate", formData.password ? "False" : "True");
 
       const response = await axios.patch(
-        `https://tolet-server2.vercel.app/update/${user?.email}`,
+        `http://localhost:5000/update/${user?.email}`,
         formDataToSend
       );
 

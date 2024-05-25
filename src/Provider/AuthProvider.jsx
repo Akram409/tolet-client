@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
     try {
       const token = localStorage.getItem("access-token");
       if (token) {
-        const response = await axios.get("https://tolet-server2.vercel.app/verifyToken", {
+        const response = await axios.get("http://localhost:5000/verifyToken", {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -74,7 +74,7 @@ const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post("https://tolet-server2.vercel.app/login", {
+      const response = await axios.post("http://localhost:5000/login", {
         email,
         password,
       });
@@ -93,7 +93,7 @@ const AuthProvider = ({ children }) => {
 
   const fetchUserData = async (email) => {
     try {
-      const response = await axios.get(`https://tolet-server2.vercel.app/user/${email}`);
+      const response = await axios.get(`http://localhost:5000/user/${email}`);
       const userData = response.data.user;
 
       setAuths({ status: "firebase", user: userData });

@@ -64,7 +64,7 @@ const MyListing = () => {
   const fetchData = async () => {
     try {
       const roommateResponse = await axios.get(
-        `https://tolet-server2.vercel.app/roommateList/${email}`
+        `http://localhost:5000/roommateList/${email}`
       );
       setRoommateData(roommateResponse.data?.roommateLists);
     } catch (error) {
@@ -82,7 +82,7 @@ const MyListing = () => {
   const fetchFlatData = async () => {
     try {
       const flatResponse = await axios.get(
-        `https://tolet-server2.vercel.app/flatList/${email}`
+        `http://localhost:5000/flatList/${email}`
       );
       setFlatData(flatResponse.data?.flatList);
     } catch (error) {
@@ -95,7 +95,7 @@ const MyListing = () => {
   const handleDeleteRoommate = async (id) => {
     try {
       const response = await axios.delete(
-        `https://tolet-server2.vercel.app/roommateList/${id}`
+        `http://localhost:5000/roommateList/${id}`
       );
       if (response.status === 200) {
         console.log("Roommate deleted successfully.");
@@ -110,7 +110,7 @@ const MyListing = () => {
 
   const handleDeleteFlat = async (id) => {
     try {
-      const response = await axios.delete(`https://tolet-server2.vercel.app/flat/${id}`);
+      const response = await axios.delete(`http://localhost:5000/flat/${id}`);
       if (response.status === 200) {
         console.log("Flat deleted successfully.");
         fetchFlatData();
@@ -194,7 +194,7 @@ const MyListing = () => {
       });
       const roomId = roomData._id;
       const response = await fetch(
-        `https://tolet-server2.vercel.app/roommateList/${roomId}`,
+        `http://localhost:5000/roommateList/${roomId}`,
         {
           method: "PATCH",
           body: formDataSend,
@@ -278,7 +278,7 @@ const MyListing = () => {
       const flatId = subletData._id;
       console.log("flatId", flatId);
       const response = await axios.patch(
-        `https://tolet-server2.vercel.app/flatList/${flatId}`,
+        `http://localhost:5000/flatList/${flatId}`,
         formDataToSend
       );
       alert("Flat list updated successfully");
@@ -458,7 +458,7 @@ const MyListing = () => {
   //       };
 
   //       // console.log(roomMates);
-  //      const response = await axios.post(`https://tolet-server2.vercel.app/wishlist`, roomMates);
+  //      const response = await axios.post(`http://localhost:5000/wishlist`, roomMates);
   //      if (response.status === 201) {
   //       // console.log("Added to wishlist:", flat);
   //       message.success("Successfully Added to Wishlist!");
@@ -487,7 +487,7 @@ const MyListing = () => {
   //       };
   //       // console.log("hello", flatData);
 
-  //       const response = await axios.post(`https://tolet-server2.vercel.app/wishList`, flatData);
+  //       const response = await axios.post(`http://localhost:5000/wishList`, flatData);
 
   //       if (response.status === 201) {
   //         // console.log("Added to wishlist:", flat);
@@ -564,7 +564,7 @@ const MyListing = () => {
                         <div className="flex justify-center w-full relative">
                           <img
                             className="rounded-xl bg-black/40 object-cover w-full h-[230px] md:h-[290px] lg:h-[309px] border border-gray-150"
-                            src={`https://tolet-server2.vercel.app/images/${roommate.roomateList.images[0]}`}
+                            src={`http://localhost:5000/images/${roommate.roomateList.images[0]}`}
                             alt="Flat Image"
                           />
                         </div>
@@ -1044,7 +1044,7 @@ const MyListing = () => {
                         <div className="flex justify-center w-full relative">
                           <img
                             className="rounded-xl bg-black/40 object-cover w-full h-[230px] md:h-[290px] lg:h-[309px] border border-gray-150"
-                            src={`https://tolet-server2.vercel.app/images/${flat.flatList.images[0]}`}
+                            src={`http://localhost:5000/images/${flat.flatList.images[0]}`}
                             alt="Flat Image"
                           />
                         </div>

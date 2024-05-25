@@ -13,7 +13,7 @@ const Logoupdate = () => {
 
   const fetchLogoData = async () => {
     try {
-      const res = await fetch(`https://tolet-server2.vercel.app/logo`, {
+      const res = await fetch(`http://localhost:5000/logo`, {
         method: "GET",
       });
 
@@ -41,7 +41,7 @@ const Logoupdate = () => {
     };
 
     try {
-      const response = await axios.post(`https://tolet-server2.vercel.app/logoUpdate`, data, config);
+      const response = await axios.post(`http://localhost:5000/logoUpdate`, data, config);
       setLogoData(response.data);
       message.success("Image Uploaded Successfully!");
       window.location.reload();

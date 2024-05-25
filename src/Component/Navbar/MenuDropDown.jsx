@@ -66,7 +66,7 @@ const MenuDropDown = () => {
                   </button>
                 </Link>
               )}
-              <Link to="/createFlatList">
+              {/* <Link to="/createFlatList">
                 <button className="block mt-5 lg:mt-0 px-7 py-1 md:hidden text-[10px] disabled:cursor-not-allowed ms-2 cursor-pointer w-full bg-blue-400 rounded-lg text-white lg:py-3 lg:px-4 lg:text-sm font-semibold  transition">
                   Create flat
                 </button>
@@ -75,7 +75,7 @@ const MenuDropDown = () => {
                 <button className="block mt-5 lg:mt-0 px-3 py-1 md:hidden disabled:cursor-not-allowed text-[10px] ms-2 cursor-pointer w-full bg-blue-400 rounded-lg text-white lg:py-3 lg:px-4 lg:text-sm font-semibold  transition">
                   Create roommate listing
                 </button>
-              </Link>
+              </Link> */}
             </div>
             <Link
               to="/"
