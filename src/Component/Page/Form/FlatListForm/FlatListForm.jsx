@@ -783,7 +783,7 @@ export default function CreateFlatListForm() {
           </Box>
         </div>
       </div>
-      <div className="flex ml-10 md:justify-center">
+      <div className="flex ml-5 md:justify-center">
         <div className="md:hidden overflow-hidden">
           <Box sx={{ maxWidth: 270 }}>
             <Stepper activeStep={activeStep} orientation="vertical">

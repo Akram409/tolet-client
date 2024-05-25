@@ -122,118 +122,113 @@ console.log("flatdataUUUU", flatData);
   
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  const truncateText = (text, length, flatId) => {
+    if (text.length > length) {
+      return (
+        <>
+          {text.substring(0, length)}...
+          <Link to={`/flatDetails/${flatId}`} className="link link-primary">
+            Read more
+          </Link>
+        </>
+      );
+    }
+    return text;
+  };
   return (
     <>
       <div className="lg:px-14 flex justify-center lg:gap-10  px-4">
         {/* this is a two button */}
 
-        <div className="flex justify-evenly flex-wrap lg:gap-10 gap-5 py-5 lg:px-6">
-          <div className="flex border border-black rounded-lg">
-            <Link to="/">
-              <button
-                className={`md:px-6 px-2 py-3 rounded-lg mr-2 text-[10px] md:text-sm lg:text-base ${
-                  activeButton === "flat"
-                    ? "bg-blue-400 text-white font-semibold border border-black"
-                    : "bg-white text-black font-semibold"
-                }`}
-                onClick={() => handleClick("flat")}
-              >
-                Find Flat
-              </button>
-            </Link>
-            <Link to="/findSublet">
-              <button
-                className={`md:px-6 px-2 py-3 rounded-lg mr-2 text-[10px] md:text-sm lg:text-base  ${
-                  activeButton === "sublet"
-                    ? "bg-blue-400 text-white font-semibold border border-black"
-                    : "bg-white text-black font-semibold"
-                }`}
-                onClick={() => handleClick("sublet")}
-              >
-                Find Sublet
-              </button>
-            </Link>
-
-            <Link to="/findRoommate">
-              <button
-                className={`md:px-6 px-2 py-3 rounded-lg text-[10px] md:text-sm lg:text-base ${
-                  activeButton === "roommate"
-                    ? "bg-blue-400 text-white font-semibold border border-black"
-                    : "bg-white text-black font-semibold"
-                }`}
-                onClick={() => handleClick("roommate")}
-              >
-                Find Roommate
-              </button>
-            </Link>
+        <div className="flex flex-wrap sm:flex-nowrap md:gap-2 lg:gap-10 gap-5 py-5">
+        <div className="w-full sm:w-[270px] md:w-[450px] lg:w-[500px] flex border border-black rounded-lg mx-5 sm:mx-0">
+            <div className="flex w-full items-center justify-around">
+              <Link to="/findFlat" className="flex-1">
+                <button
+                  className={`w-full md:px-6 px-2 py-3 sm:py-4 lg:py-3  rounded-lg text-[10px] md:text-sm lg:text-base ${
+                    activeButton === "flat"
+                      ? "bg-blue-400 text-white font-semibold border border-black"
+                      : "bg-white text-black font-semibold"
+                  }`}
+                  onClick={() => handleClick("flat")}
+                >
+                  Find Flat
+                </button>
+              </Link>
+              <Link to="/findSublet" className="flex-1">
+                <button
+                  className={`w-full md:px-6 px-2 py-3 sm:py-4 lg:py-3 rounded-lg text-[10px] md:text-sm lg:text-base ${
+                    activeButton === "sublet"
+                      ? "bg-blue-400 text-white font-semibold border border-black"
+                      : "bg-white text-black font-semibold"
+                  }`}
+                  onClick={() => handleClick("sublet")}
+                >
+                  Find Sublet
+                </button>
+              </Link>
+              <Link to="/findRoommate" className="flex-1">
+                <button
+                  className={`w-full md:px-6 px-2 py-3 sm:py-4 lg:py-3 rounded-lg text-[10px] md:text-sm lg:text-base ${
+                    activeButton === "roommate"
+                      ? "bg-blue-400 text-white font-semibold border border-black"
+                      : "bg-white text-black font-semibold"
+                  }`}
+                  onClick={() => handleClick("roommate")}
+                >
+                  Find Roommate
+                </button>
+              </Link>
+            </div>
           </div>
           {/* search functionality */}
-
-          <div className="">
-            <input
-              value={searchValue}
-              onChange={handleSearchChange}
-              className="border border-black rounded-lg w-56 lg:px-6 px-1 py-2 md:py-3"
-              placeholder="   Search Location"
-            />
-          </div>
-
-          <div className="relative">
-            <button
-              ref={pageRef}
-              onClick={handleDropDownPage}
-              className="border px-5 rounded-lg py-2 md:py-3 lg:py-3 border-black"
-            >
-              Sort
-              <IoIosArrowDown
-             
-                className={`inline ml-[137px] lg:ml-28 xl:ml-28 ${
-                  dropdownOpenPage ? "rotate-180" : "rotate-0"
-                } ml-1`}
-                size={16}
-                onClick={dropDownIcon}
+          <div className="flex flex-row gap-1 lg:gap-2 mx-5 sm:mx-0 relative">
+            <div className="w-full md:w-auto flex-1 ">
+              <input
+                value={searchValue}
+                onChange={handleSearchChange}
+                className="border border-black rounded-lg sm:px-6 px-1 py-2 sm:py-3"
+                placeholder="Search Locations"
               />
-            </button>
-            <ul
-              ref={dropdownRefPage}
-              className={`absolute py-2 px-1 z-[1000] overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg  w-40 ${
-                dropdownOpenPage ? "block top-[50px]" : "hidden"
-              }`}
-            >
-              <li>
-                <button
-                  onClick={() => handlePriceSort("High To Low")}
-                  className="rounded whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent flex items-center gap-2"
+            </div>
+            <div className="">
+              <div className="dropdown dropdown-bottom dropdown-end w-28">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="py-2 sm:py-3 w-full  rounded-lg bg-blue-400 text-white"
                 >
-                  Price (high to low)
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handlePriceSort("Low To High")}
-                  className="rounded whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent flex items-center gap-2"
+                  <span className="flex items-center justify-center gap-1">
+                    Sort <IoIosArrowDown />
+                  </span>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
                 >
-                  Price (low to high)
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handlePriceSort("Low To High")}
-                  className="rounded whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent flex items-center gap-2"
-                >
-                  Relevance
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handlePriceSort("Low To High")}
-                  className="rounded whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent flex items-center gap-2"
-                >
-                  newest arrivals
-                </button>
-              </li>
-            </ul>
+                  <li>
+                    <a onClick={() => handlePriceSort("High To Low")}>
+                      Price (high to low)
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={() => handlePriceSort("Low To High")}>
+                      Price (low to high)
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={() => handlePriceSort("Relevance")}>
+                      Relevance
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={() => handlePriceSort("Newest Arrivals")}>
+                      Newest Arrivals
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -278,9 +273,12 @@ console.log("flatdataUUUU", flatData);
               <div className="flex-1 text-sm mt-8 gap-3 space-y-2">
                 <div>
                   <h3 className="text-gray-900">
-                    Location {flat.flatList.description.location.address},{" "}
-                    {flat.flatList.description.location.city},{" "}
-                    {flat.flatList.description.location.postalCode}
+                  Location:{" "}
+                    {truncateText(
+                      flat.flatList.description.location.address,
+                      50,
+                      flat._id
+                    )}
                   </h3>
                   <p className="mt-1.5 text-pretty text-xs text-gray-500">
                     HomeType:<span className="uppercase"> {flat.flatList.description.type},</span>

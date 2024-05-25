@@ -3,7 +3,7 @@ import axios from "axios";
 import "leaflet/dist/leaflet.css";
 import { useContext, useEffect, useRef, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 const FlatDetails = () => {
@@ -14,13 +14,10 @@ const FlatDetails = () => {
   const [allFlatImages, setAllFlatImages] = useState([]);
   const [openReportModal, setOpenReportModal] = useState(false);
   const [reportMessage, setReportMessage] = useState("");
-
+  const [fourFlatData, setFourFlatData] = useState([]);
   const { data: flatData } = useLoaderData();
 
-  console.log(
-    flatData?.flatList?.description?.location?.lat,
-    flatData?.flatList?.description?.location?.lon
-  );
+  console.log(flatData?.flatList?.description?.location?.city);
 
   const { auths } = useContext(AuthContext);
   const user = auths?.user;
@@ -50,6 +47,9 @@ const FlatDetails = () => {
   };
 
   useEffect(() => {
+    fetchFourFlatData();
+  }, [flatData]);
+  useEffect(() => {
     setAllFlatImages(flatData.flatList?.images);
   }, []);
 
@@ -64,22 +64,25 @@ const FlatDetails = () => {
       };
       // console.log("hello", flatData);
 
-    const response =  await axios.post(`https://tolet-server2.vercel.app/reportList`, report);
-    if (response.status === 201) {
-      // console.log("Added to wishlist:", flat);
-      message.success("Successfully Added to Wishlist!");
-    } else if (response.status === 409) {
-      message.error("Wishlist already exists for this user.");
+      const response = await axios.post(
+        `https://tolet-server2.vercel.app/reportList`,
+        report
+      );
+      if (response.status === 201) {
+        // console.log("Added to wishlist:", flat);
+        message.success("Successfully Added to Wishlist!");
+      } else if (response.status === 409) {
+        message.error("Wishlist already exists for this user.");
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        message.error("Wishlist already exists for this user.");
+      } else {
+        console.error("Error adding to wishlist:", error);
+        message.error("An error occurred while adding to wishlist.");
+      }
     }
-  } catch (error) {
-    if (error.response && error.response.status === 409) {
-      message.error("Wishlist already exists for this user.");
-    } else {
-      console.error("Error adding to wishlist:", error);
-      message.error("An error occurred while adding to wishlist.");
-    }
-  }
-};
+  };
   const [center, setCenter] = useState([23.8041, 90.4152]);
 
   useEffect(() => {
@@ -114,6 +117,37 @@ const FlatDetails = () => {
       </Marker>
     </MapContainer>
   );
+
+  const fetchFourFlatData = async () => {
+    try {
+      const city = flatData?.flatList?.description?.location?.city;
+      if (city) {
+        const response = await axios.get(
+          `https://tolet-server2.vercel.app/flatList/${city}`
+        );
+        if (response.status === 200) {
+          setFourFlatData(response.data);
+        } else {
+          console.error("No flats found for the provided city.");
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching flats by city:", error);
+    }
+  };
+  const truncateText = (text, length, flatId) => {
+    if (text.length > length) {
+      return (
+        <>
+          {text.substring(0, length)}...
+          <Link to={`/flatDetails/${flatId}`} className="link link-primary">
+            Read more
+          </Link>
+        </>
+      );
+    }
+    return text;
+  };
   return (
     <>
       {/* details hero section  */}
@@ -306,7 +340,7 @@ const FlatDetails = () => {
                         </div>
                         <button
                           className="text-black px-2 py-2 mx-2 w-full border-2 mt-16 border-black rounded-lg bg-blue-400  
-                                  capitalize items-center flex justify-center gap-5"
+                                    capitalize items-center flex justify-center gap-5"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -434,8 +468,8 @@ const FlatDetails = () => {
               </div>
             </div>
             {/* div for right side */}
-            <div className="flex flex-col gap-3">
-              <div className="h-auto p-5 md:w-[360px] lg:w-[400px] w-96 max-w-[400px] md:block hidden  md:mt-3 rounded-lg shadow-lg border border-gray-150">
+            <div className="flex flex-col gap-3 mx-[15px] sm:mx-0">
+              <div className="h-auto p-5 md:w-[360px] lg:w-[400px] w-96 max-w-[400px] md:block hidden  md:mt-3 rounded-lg shadow-lg border border-gray-150 ">
                 <div>
                   <div className="flex items-center justify-between">
                     <h2 className="lg:text-3xl md:text-base font-bold md:my-5">
@@ -468,7 +502,7 @@ const FlatDetails = () => {
 
                   <button
                     className="text-white px-4 py-3 mx-2 w-full border-2 mt-16 rounded-lg bg-blue-400  
-                                  capitalize items-center flex justify-center gap-5"
+                                    capitalize items-center flex justify-center gap-5"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -489,7 +523,7 @@ const FlatDetails = () => {
               <div className="md:block hidden">
                 <button
                   onClick={() => setOpenReportModal(true)}
-                  className=" bg-blue-400  text-white rounded-lg"
+                  className=" text-black rounded-lg"
                 >
                   <div className="md:w-[360px] lg:w-[400px] w-96 max-w-[400px] h-fit p-5 underline flex justify-center items-center gap-5">
                     <svg
@@ -565,17 +599,81 @@ const FlatDetails = () => {
               </div>
             </div>
           </div>
-          {/* {lat === 23.8041 && lon === 90.4152 ? "": 
-            <div className="relative h-full max-md:min-h-[450px] mt-16 px-3">
+          {flatData?.flatList?.description?.location?.lat != 23.8041 && (
+            <div className="relative h-full max-md:min-h-[450px] mt-16 ">
               {map}
             </div>
-      } */}
-          
-          {flatData?.flatList?.description?.location?.lat != 23.8041 && (
-              <div className="relative h-full max-md:min-h-[450px] mt-16 px-3">
-                {map}
-              </div>
-            )}
+          )}
+        </div>
+        <div className="mx-14 my-0 md:my-5 lg:my-10 ">
+          <h1 className="text-3xl font-bold text-blue-400 ">
+            SIMILAR LISTINGS YOU MAY LIKE
+          </h1>
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {fourFlatData.slice(0,3).map((flat, index) => (
+              <Link key={index} to={`/flatDetails/${flat._id}`} className="">
+                <div className="max-w-[350px] font-sans rounded-2xl space-y-6 my-5 mx-auto bg-white">
+                  <div className="flex justify-center w-full relative">
+                    <div className="flex justify-end items-center left-4 right-4 top-4 absolute">
+                      <button
+                        className="flex items-center"
+                        onClick={() => addToWishlist(flat)}
+                      >
+                        <svg
+                          width={30}
+                          className="hover:fill-red-500 hover:stroke-red-500 stroke-2 fill-transparent stroke-white"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                          style={{ cursor: "pointer" }}
+                        >
+                          <g strokeWidth="0"></g>
+                          <g
+                            id="SVGRepo_tracerCarrier"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          ></g>
+                          <g id="SVGRepo_iconCarrier">
+                            <path d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z"></path>
+                          </g>
+                        </svg>
+                      </button>
+                    </div>
+                    <img
+                      className="rounded-xl bg-black/40 w-full object-cover h-[230px] md:h-[290px] lg:h-[309px] border border-gray-150"
+                      src={`https://tolet-server2.vercel.app/images/${flat.flatList.images[0]}`}
+                      alt="Flat Image"
+                    />
+                  </div>
+                  <div className="flex-1 text-sm mt-8 gap-3 space-y-2">
+                    <div>
+                      <h3 className="text-gray-900">
+                        Location:{" "}
+                        {truncateText(
+                          flat.flatList.description.location.address,
+                          50,
+                          flat._id
+                        )}
+                      </h3>
+                      <p className="mt-1.5 text-pretty text-xs text-gray-500">
+                        HomeType:
+                        <span className="uppercase">
+                          {" "}
+                          {flat.flatList.description.type},
+                        </span>
+                      </p>
+                      <p className="mt-1.5 text-pretty text-xs text-gray-500">
+                        Bedroom: {flat.flatList.description.bedroom} bedroom
+                        Flat
+                      </p>
+                    </div>
+                    <p className="text-gray-900 font-bold text-lg">
+                      $ {flat.flatList.description.rent}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </>

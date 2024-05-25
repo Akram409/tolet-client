@@ -181,7 +181,7 @@ export default function CreateFlatListForm() {
 
   return (
     <>
-      <div className="flex justify-center mt-5">
+      <div className="flex justify-start lg:justify-center mt-5">
         <div className=" w-6/12  md:block hidden">
           <Box sx={{ width: "100%" }}>
             <Stepper activeStep={activeStep}>
@@ -542,7 +542,7 @@ export default function CreateFlatListForm() {
         </div>
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-start lg:justify-center">
         <div className="md:hidden">
           <Box sx={{ maxWidth: 400 }}>
             <Stepper activeStep={activeStep} orientation="vertical">

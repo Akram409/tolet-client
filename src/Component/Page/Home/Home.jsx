@@ -91,6 +91,20 @@ const Home = () => {
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const truncateText = (text, length, flatId) => {
+    if (text.length > length) {
+      return (
+        <>
+          {text.substring(0, length)}...
+          <Link to={`/flatDetails/${flatId}`} className="link link-primary">
+            Read more
+          </Link>
+        </>
+      );
+    }
+    return text;
+  };
   return (
     <>
       <div className="lg:px-14 flex justify-center lg:gap-10  px-2">
@@ -230,9 +244,12 @@ const Home = () => {
               <div className="flex-1 text-sm mt-8 gap-3 space-y-2">
                 <div>
                   <h3 className="text-gray-900">
-                    Location {flat.flatList.description.location.address},{" "}
-                    {flat.flatList.description.location.city},{" "}
-                    {flat.flatList.description.location.postalCode}
+                  Location:{" "}
+                    {truncateText(
+                      flat.flatList.description.location.address,
+                      50,
+                      flat._id
+                    )}
                   </h3>
                   <p className="mt-1.5 text-pretty text-xs text-gray-500">
                     HomeType:

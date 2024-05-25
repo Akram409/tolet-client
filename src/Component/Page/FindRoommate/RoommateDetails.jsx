@@ -2,7 +2,7 @@ import { message } from "antd";
 import axios from "axios";
 import { useContext, useEffect, useRef, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 const RoommateDetails = () => {
@@ -13,7 +13,8 @@ const RoommateDetails = () => {
   const [allRoommateImages, setAllRoommateImages] = useState([]);
   const [openReportModal, setOpenReportModal] = useState(false);
   const [reportMessage, setReportMessage] = useState("");
-  // console.log(id);
+  const [fourFlatData, setFourFlatData] = useState([]);
+  console.log("🚀 ~ RoommateDetails ~ fourFlatData:", fourFlatData)
 
   const { data: roommateDetails } = useLoaderData();
   console.log(roommateDetails);
@@ -67,7 +68,7 @@ const RoommateDetails = () => {
         flatWishList: "",
         roommateWishList: roommateDetails,
       };
-      // console.log("hello", flatData);
+      // console.log("hello", roommateDetails);
 
       await axios.post(`https://tolet-server2.vercel.app/reportList`, report);
       message.success("Successfully Added reportList!");
@@ -78,9 +79,9 @@ const RoommateDetails = () => {
     }
   };
 
-  console.log(allRoommateImages);
   const [center, setCenter] = useState([23.8041, 90.4152]);
-
+  console.log(roommateDetails?.roomateList?.description?.location
+    ?.city)
   useEffect(() => {
     setCenter([
       parseFloat(roommateDetails?.roomateList?.description?.location?.lat),
@@ -115,7 +116,41 @@ const RoommateDetails = () => {
       </Marker>
     </MapContainer>
   );
-
+  
+  useEffect(() => {
+    fetchFourFlatData();
+  }, [roommateDetails]);
+  const fetchFourFlatData = async () => {
+    try {
+      const city = roommateDetails?.roomateList?.description?.location
+      ?.city;
+      if (city) {
+        const response = await axios.get(
+          `https://tolet-server2.vercel.app/roommateList/${city}`
+        );
+        if (response.status === 200) {
+          setFourFlatData(response.data);
+        } else {
+          console.error("No flats found for the provided city.");
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching flats by city:", error);
+    }
+  };
+  const truncateText = (text, length, flatId) => {
+    if (text.length > length) {
+      return (
+        <>
+          {text.substring(0, length)}...
+          <Link to={`/roommateDetails/${flatId}`} className="link link-primary">
+            Read more
+          </Link>
+        </>
+      );
+    }
+    return text;
+  };
   return (
     <>
       {/* details hero section  */}
@@ -297,7 +332,7 @@ const RoommateDetails = () => {
                     </div>
                   </div>
                   {/* div for right side */}
-                  <div className="flex flex-col gap-3 mt-4">
+                  <div className="flex flex-col gap-3 mt-4 mx-[15px] sm:mx-0">
                     <div className="h-auto p-5 lg:w-[416px] md:w-[356px] max-w-[420px] block md:hidden  md:mt-3 rounded-lg shadow-lg border border-gray-150">
                       <div>
                         <div className="flex items-center justify-between">
@@ -561,7 +596,7 @@ const RoommateDetails = () => {
               <div className="md:block hidden">
                 <button
                   onClick={() => setOpenReportModal(true)}
-                  className="bg-blue-400 text-white rounded-lg"
+                  className="text-black rounded-lg"
                 >
                   <div className="md:w-[360px] lg:w-[400px] w-96 max-w-[380px] h-fit p-5 underline flex justify-center items-center gap-5">
                     <svg
@@ -645,24 +680,75 @@ const RoommateDetails = () => {
               </div>
             )}
         </div>
+        <div className="mx-14 my-0 md:my-5 lg:my-10">
+  <h1 className="text-3xl font-bold text-blue-400">
+    SIMILAR LISTINGS YOU MAY LIKE
+  </h1>
+  <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+    {fourFlatData.slice(0, 3).map((roommate, index) => (
+      <Link key={index} to={`/roommateDetails/${roommate._id}`} className="">
+        <div className="max-w-[350px] font-sans rounded-2xl space-y-6 my-5 mx-auto bg-white">
+          <div className="flex justify-center w-full relative">
+            <div className="flex justify-end items-center left-4 right-4 top-4 absolute">
+              <button
+                className="flex items-center"
+                onClick={() => addToWishlist(roommate)}
+              >
+                <svg
+                  width={30}
+                  className="hover:fill-red-500 hover:stroke-red-500 stroke-2 fill-transparent stroke-white"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ cursor: "pointer" }}
+                >
+                  <g strokeWidth="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z"></path>
+                  </g>
+                </svg>
+              </button>
+            </div>
+            <img
+              className="rounded-xl bg-black/40 w-full object-cover h-[230px] md:h-[290px] lg:h-[309px] border border-gray-150"
+              src={`https://tolet-server2.vercel.app/images/${roommate.roomateList.images[0]}`}
+              alt="Roommate Image"
+            />
+          </div>
+          <div className="flex-1 text-sm mt-8 gap-3 space-y-2">
+            <div>
+              <h3 className="text-gray-900">
+                Location:{" "}
+                {truncateText(
+                  roommate.roomateList.description.location.address,
+                  50,
+                  roommate._id
+                )}
+              </h3>
+              <p className="mt-1.5 text-pretty text-xs text-gray-500">
+                Gender Preference:{" "}
+                <span className="uppercase">
+                  {roommate.roomateList.roomatePreferences.gender}
+                </span>
+              </p>
+            </div>
+            <p className="text-gray-900 font-bold text-lg">
+              $ {roommate.roomateList.description.rent}
+            </p>
+          </div>
+        </div>
+      </Link>
+    ))}
+  </div>
+</div>
+
       </div>
     </>
   );
 };
 
 export default RoommateDetails;
-{
-  /* <div>
-<select
-  onChange={handlePriceSort}
-  defaultValue={"bold"}
-  className="select border border-black px-12 py-2 lg:w-auto font-bold border-main focus:border-main rounded-lg "
->
-  <option className="font-bold" value="bold" disabled>
-    Sort
-  </option>
-  <option>High To Low</option>
-  <option>Low To High</option>
-</select>
-</div> */
-}

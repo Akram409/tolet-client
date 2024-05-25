@@ -73,24 +73,24 @@ const FindRoommate = () => {
     setGender(value);
   };
 
-  console.log(gender,"click");
+  console.log(gender, "click");
   const dropDownIcon = (e) => {
     e.stopPropagation();
     setDropDownPage(!dropdownOpenPage);
-};
+  };
 
-const genderDropDownIcon = (e) => {
-  e.stopPropagation();
-  setDropDown(!dropDown);
-};
+  const genderDropDownIcon = (e) => {
+    e.stopPropagation();
+    setDropDown(!dropDown);
+  };
   const indexOfLastRoommate = currentPage * roommatesPerPage;
   const indexOfFirstRoommate = indexOfLastRoommate - roommatesPerPage;
   const currentRoommates = roomMate.slice(
     indexOfFirstRoommate,
     indexOfLastRoommate
   );
-// Change page
-const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   // add To Roommate Wishlist ---------------------------
 
   const addToRoommateWishlist = async (roommate) => {
@@ -102,9 +102,12 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
         roommateWishList: roommate,
         flatWishList: "",
       };
-     
+
       // console.log(roomMates);
-      const response = await axios.post(`https://tolet-server2.vercel.app/wishlist`, roomMates);
+      const response = await axios.post(
+        `https://tolet-server2.vercel.app/wishlist`,
+        roomMates
+      );
       if (response.status === 201) {
         // console.log("Added to wishlist:", flat);
         message.success("Successfully Added to Wishlist!");
@@ -120,240 +123,215 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
       }
     }
   };
+  const truncateText = (text, length, flatId) => {
+    if (text.length > length) {
+      return (
+        <>
+          {text.substring(0, length)}...
+          <Link to={`/roommateDetails/${flatId}`} className="link link-primary">
+            Read more
+          </Link>
+        </>
+      );
+    }
+    return text;
+  };
+  
   return (
     <>
-      <div className="px-2 lg:px-12 flex flex-wrap justify-center lg:gap-10 gap-5 py-5">
-        <div className="flex border border-black rounded-lg">
-          <Link to="/findFlat">
-            <button
-              className={`md:px-6 px-2 py-3 rounded-lg mr-2 text-[10px] md:text-sm lg:text-base  ${
-                activeButton === "flat"
-                  ? "bg-blue-400 text-white font-semibold border border-black"
-                  : "bg-white text-black font-semibold"
-              }`}
-              onClick={() => handleClick("flat")}
-            >
-              Find Flat
-            </button>
-          </Link>
-          <Link to="/findSublet">
-            <button
-              className={`md:px-6 px-2 py-3 rounded-lg mr-2 text-[10px] md:text-sm lg:text-base ${
-                activeButton === "sublet"
-                  ? "bg-blue-400 text-white font-semibold border border-black"
-                  : "bg-white text-black font-semibold"
-              }`}
-              onClick={() => handleClick("sublet")}
-            >
-              Find Sublet
-            </button>
-          </Link>
-
-          <Link to="/findRoommate">
-            <button
-              className={`md:px-6 px-2 py-3 rounded-lg text-[10px] md:text-sm lg:text-base ${
-                activeButton === "roommate"
-                  ? "bg-blue-400 text-white font-semibold border border-black"
-                  : "bg-white text-black font-semibold"
-              }`}
-              onClick={() => handleClick("roommate")}
-            >
-              Find Roommate
-            </button>
-          </Link>
-        </div>
-
-        <div className="flex flex-wrap justify-center items-center gap-5 px-4">
-          <input
-            value={searchValue}
-            onChange={handleSearch}
-            className="border border-black rounded-lg w-56 lg:px-6 px-1 py-2 md:py-3"
-            placeholder="Search Location"
-          />
-
-          <div className="relative">
-            <button
-              ref={imgRef}
-              onClick={handleDropDown}
-              className="border px-2 py-2 md:py-3 lg:py-3 border-black  rounded-lg"
-            >
-              Gender
-              <IoIosArrowDown
-                className={`inline ml-[137px] lg:ml-28 xl:ml-28${
-                  dropDown ? "rotate-180" : "rotate-0"
-                } ml-1`}
-                size={16}
-                onClick={genderDropDownIcon}
-              />
-            </button>
-            <ul
-              className={`absolute py-3 px-2 z-[1000] overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg  w-56 ${
-                dropDown ? "block top-[50px]" : "hidden"
-              }`}
-            >
-              <li>
-                <button
-                 onClick={() => handleGenderFilter("female")}
-                className="rounded whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent flex items-center gap-2">
-                
-                  Female
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => handleGenderFilter("male")}
-                className="rounded whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent flex items-center gap-2">
-                  Male
-                </button>
-              </li>
-            </ul>
-          </div>
-          <div className="relative">
-            <button
-              ref={pageRef}
-              onClick={handleDropDownPage}
-              className="border px-5 py-2 md:py-3 lg:py-3 border-black  rounded-lg"
-            >
-              Sort
-              <IoIosArrowDown
-                className={`inline ml-[137px] lg:ml-28 xl:ml-28 ${
-                  dropdownOpenPage ? "rotate-180" : "rotate-0"
-                } ml-1`}
-                size={16}
-                onClick={dropDownIcon}
-              />
-            </button>
-            <ul
-              ref={dropdownRefPage}
-              className={`absolute py-3 px-1 z-[1000] overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg  w-40 ${
-                dropdownOpenPage ? "block top-[50px]" : "hidden"
-              }`}
-            >
-              <li>
-                <button
-                  onClick={() => handlePriceSort("High To Low")}
-                  className="rounded whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent flex items-center gap-2"
-                >
-                  Price (high to low)
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handlePriceSort("Low To High")}
-                  className="rounded whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent flex items-center gap-2"
-                >
-                  Price (low to high)
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handlePriceSort("Low To High")}
-                  className="rounded whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent flex items-center gap-2"
-                >
-                  Relevance
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handlePriceSort("Low To High")}
-                  className="rounded whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent flex items-center gap-2"
-                >
-                  newest arrivals
-                </button>
-              </li>
-            </ul>
+      <div className="flex justify-center flex-wrap lg:flex-nowrap md:gap-2 lg:gap-2 gap-3 py-5">
+        <div className="w-full sm:w-full md:w-full lg:w-2/5 flex border border-black rounded-lg mx-5 lg:mx-0">
+          <div className="flex w-full items-center justify-around">
+            <Link to="/findFlat" className="flex-1">
+              <button
+                className={`w-full md:px-6 px-2 py-3 sm:py-4 lg:py-3  rounded-lg text-[10px] md:text-sm lg:text-base ${
+                  activeButton === "flat"
+                    ? "bg-blue-400 text-white font-semibold border border-black"
+                    : "bg-white text-black font-semibold"
+                }`}
+                onClick={() => handleClick("flat")}
+              >
+                Find Flat
+              </button>
+            </Link>
+            <Link to="/findSublet" className="flex-1">
+              <button
+                className={`w-full md:px-6 px-2 py-3 sm:py-4 lg:py-3 rounded-lg text-[10px] md:text-sm lg:text-base ${
+                  activeButton === "sublet"
+                    ? "bg-blue-400 text-white font-semibold border border-black"
+                    : "bg-white text-black font-semibold"
+                }`}
+                onClick={() => handleClick("sublet")}
+              >
+                Find Sublet
+              </button>
+            </Link>
+            <Link to="/findRoommate" className="flex-1">
+              <button
+                className={`w-full md:px-6 px-2 py-3 sm:py-4 lg:py-3 rounded-lg text-[10px] md:text-sm lg:text-base ${
+                  activeButton === "roommate"
+                    ? "bg-blue-400 text-white font-semibold border border-black"
+                    : "bg-white text-black font-semibold"
+                }`}
+                onClick={() => handleClick("roommate")}
+              >
+                Find Roommate
+              </button>
+            </Link>
           </div>
         </div>
-      </div>
-      {/* <select
-            onChange={handlePriceSort}
-            defaultValue={"bold"}
-            className="select select-bordered border border-gray-800 bg-gray-100 px-4 py-2 lg:w-auto w-[20vw] font-bold border-main focus:border-main rounded-lg  join-item"
-          >
-            <option className="font-bold" value="bold" disabled>
-              Rent
-            </option>
-            <option>High To Low</option>
-            <option>Low To High</option>
-          </select> */}
-      {/* roommate cards  */}
-
-      <div className="flex justify-center mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-5 lg:px-9 px-6">
-        {currentRoommates.map((roommate, index) => (
-          <Link
-            key={index}
-            to={`/roommateDetails/${roommate._id}`}
-            className="block"
-          >
-            <div className="bg-white md:px-4 py-5 rounded-lg ">
-              <div className="relative border border-gray-150 grid h-[15rem] md:h-[20rem] w-full lg:max-w-[22rem] flex-col items-end justify-end overflow-hidden rounded-xl bg-white bg-clip-border text-center text-gray-700">
+        <div className="flex flex-col lg:flex-row gap-2  w-full mx-5 lg:mx-0 relative lg:w-auto">
+          <div className="w-full sm:w-auto">
+            <input
+              value={searchValue}
+              onChange={handleSearch}
+              className="border border-black rounded-lg sm:px-6 px-1 py-2 sm:py-3 w-full"
+              placeholder="Search Locations"
+            />
+          </div>
+          <div className="flex flex-col md:flex-row w-full sm:w-auto">
+            <div className="flex gap-1 md:gap-2 w-full">
+              <div className="dropdown dropdown-bottom flex-1">
                 <div
-                  className="absolute inset-0 m-0 h-[230px] md:h-[290px] lg:h-[319px] border rounded-md border-gray-150 w-full overflow-hidden bg-black/40   bg-cover bg-clip-border bg-center text-gray-700 shadow-none"
-                  style={{
-                    backgroundImage: `url('https://tolet-server2.vercel.app/images/${roommate?.roomateList?.images[0]}')`,
-                  }}
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-wide  bg-blue-400 text-white py-2 sm:py-3 w-full"
                 >
-                  <div className="flex justify-end items-center left-4 right-4 top-4 absolute">
-                    <button
-                      className="flex justify-end px-5 py-6"
-                      onClick={() => addToRoommateWishlist(roommate)}
-                    >
-                      <svg
-                        width={30}
-                        className="hover:fill-red-500 hover:stroke-red-500 stroke-2 fill-transparent stroke-white "
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        style={{ cursor: "pointer" }}
-                      >
-                        <g strokeWidth="0"></g>
-                        <g
-                          id="SVGRepo_tracerCarrier"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        ></g>
-                        <g id="SVGRepo_iconCarrier">
-                          <path d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z"></path>
-                        </g>
-                      </svg>
-                    </button>
-                  </div>
+                  <span className="flex items-center justify-center gap-1">
+                    Gender <IoIosArrowDown />
+                  </span>
                 </div>
-                <div className="relative lg:top-1 -top-5 md:-top-10 p-6 px-6 lg:py-6 md:px-5">
-                  <img
-                    alt="user"
-                    src={`https://tolet-server2.vercel.app/images/${roommate?.roomateList?.contact_person
-                    ?.image}`}
-                    className="relative inline-block h-[50px] w-[50px] md:h-[70px] md:w-[70px] lg:h-[80px] lg:w-[80px] !rounded-lg border-2 border-white object-cover object-center"
-                  />
-                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 text-black"
+                >
+                  <li>
+                    <a onClick={() => handleGenderFilter("male")}>Male</a>
+                  </li>
+                  <li>
+                    <a onClick={() => handleGenderFilter("female")}>Female</a>
+                  </li>
+                </ul>
               </div>
-              <div className="mt-3 flex-1 text-sm">
-                <div>
-                  <h3 className="text-gray-900 group-hover:underline group-hover:underline-offset-4">
-                    Location:{" "}
-                    {roommate.roomateList.description.location.address},
-                    {roommate.roomateList.description.location.city},
-                  </h3>
-                  <p className="mt-2 text-pretty text-xs text-gray-500">
-                    HomeType: {roommate.roomateList.description.bedroomType}
-                  </p>
+              <div className="dropdown dropdown-end flex-1">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-wide  bg-blue-400 text-white py-2 sm:py-3 w-full"
+                >
+                  <span className="flex items-center justify-center gap-1">
+                    Sort <IoIosArrowDown />
+                  </span>
                 </div>
-                <p className="text-gray-900 font-bold text-lg mt-2">
-                  $ {roommate.roomateList.description.rent}
-                </p>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <a onClick={() => handlePriceSort("High To Low")}>
+                      Price (high to low)
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={() => handlePriceSort("Low To High")}>
+                      Price (low to high)
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={() => handlePriceSort("Relevance")}>
+                      Relevance
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={() => handlePriceSort("Newest Arrivals")}>
+                      Newest Arrivals
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
-          </Link>
-        ))}
+          </div>
+        </div>
       </div>
+
+      <div className="flex justify-center mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-5 lg:px-9 px-6">
+          {currentRoommates.map((roommate, index) => (
+            <Link
+              key={index}
+              to={`/roommateDetails/${roommate._id}`}
+              className="block"
+            >
+              <div className="bg-white md:px-4 py-5 rounded-lg ">
+                <div className="relative border border-gray-150 grid h-[15rem] md:h-[20rem] w-full lg:max-w-[22rem] flex-col items-end justify-end overflow-hidden rounded-xl bg-white bg-clip-border text-center text-gray-700">
+                  <div
+                    className="absolute inset-0 m-0 h-[230px] md:h-[290px] lg:h-[319px] border rounded-md border-gray-150 w-full overflow-hidden bg-black/40   bg-cover bg-clip-border bg-center text-gray-700 shadow-none"
+                    style={{
+                      backgroundImage: `url('https://tolet-server2.vercel.app/images/${roommate?.roomateList?.images[0]}')`,
+                    }}
+                  >
+                    <div className="flex justify-end items-center left-4 right-4 top-4 absolute">
+                      <button
+                        className="flex justify-end px-5 py-6"
+                        onClick={() => addToRoommateWishlist(roommate)}
+                      >
+                        <svg
+                          width={30}
+                          className="hover:fill-red-500 hover:stroke-red-500 stroke-2 fill-transparent stroke-white "
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                          style={{ cursor: "pointer" }}
+                        >
+                          <g strokeWidth="0"></g>
+                          <g
+                            id="SVGRepo_tracerCarrier"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          ></g>
+                          <g id="SVGRepo_iconCarrier">
+                            <path d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z"></path>
+                          </g>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="relative lg:top-1 -top-5 md:-top-10 p-6 px-6 lg:py-6 md:px-5">
+                    <img
+                      alt="user"
+                      src={`https://tolet-server2.vercel.app/images/${roommate?.roomateList?.contact_person?.image}`}
+                      className="relative inline-block h-[50px] w-[50px] md:h-[70px] md:w-[70px] lg:h-[80px] lg:w-[80px] !rounded-lg border-2 border-white object-cover object-center"
+                    />
+                  </div>
+                </div>
+                <div className="mt-3 flex-1 text-sm">
+                  <div>
+                    <h3 className="text-gray-900 group-hover:underline group-hover:underline-offset-4">
+                    Location:{" "}
+                    {truncateText(
+                      roommate?.roomateList?.description.location.address,
+                      50,
+                      roommate._id
+                    )}
+                    </h3>
+                    <p className="mt-2 text-pretty text-xs text-gray-500">
+                      HomeType: {roommate.roomateList.description.bedroomType}
+                    </p>
+                  </div>
+                  <p className="text-gray-900 font-bold text-lg mt-2">
+                    $ {roommate.roomateList.description.rent}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
 
       {/* for pagination */}
 
       <div className=" flex flex-wrap justify-center mb-10 mt-24">
         <button
-           className="join-item px-2 py-1 md:text-base text-sm rounded-md btn btn-outline mr-2"
+          className="join-item px-2 py-1 md:text-base text-sm rounded-md btn btn-outline mr-2"
           onClick={() => paginate(currentPage - 1)}
           disabled={currentPage === 1}
         >
