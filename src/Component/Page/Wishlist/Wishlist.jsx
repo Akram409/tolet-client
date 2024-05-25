@@ -117,7 +117,7 @@ const Wishlist = () => {
               </div>
               {/* item increase decrees  */}
             <div className="flex flex-wrap items-center justify-between gap-4 md:gap-10 mt-4">
-              <div className=" bg-green-500 font-medium  hover:scale-110 scale-100 transition-all duration-100 text-white py-1 px-4 rounded-md">
+              <div className=" bg-blue-400 font-medium  hover:scale-110 scale-100 transition-all duration-100 text-white py-1 px-4 rounded-md">
                 {item.flatWishList ? (
                   item.flatWishList.flatList.description.type === "flat" ? (
                     <Link to={`/flatDetails/${item?.flatWishList._id}`}>

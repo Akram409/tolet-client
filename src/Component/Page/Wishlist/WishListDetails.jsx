@@ -146,7 +146,7 @@ console.log(maps);
                 <div>
                   <button
                     onClick={() => setOpenModal(true)}
-                    className="rounded-sm  px-5 py-[6px] text-black"
+                    className="rounded-sm bg-blue-400   px-5 py-[6px] text-white"
                     id="_modal_NavigateUI"
                   >
                     Show All Photo
@@ -325,7 +325,7 @@ console.log(maps);
                    </h2>
                  </div>
                  <button
-                   className="text-black px-4 py-3 mx-2 w-full border-2 mt-16 border-black rounded-lg bg-green-400  
+                   className="text-white px-4 py-3 mx-2 w-full border-2 mt-16 rounded-lg bg-blue-400  
                                 transition-all duration-500 capitalize items-center flex justify-center gap-5 lg:text-xl text-sm md:text-base  font-medium"
                  >
                    <svg
@@ -434,7 +434,7 @@ console.log(maps);
                  
                  </div>
                  <button
-                   className="text-black px-4 py-3 mx-2 w-full border-2 mt-16 border-black rounded-lg bg-green-400  
+                   className="text-white px-4 py-3 mx-2 w-full border-2 mt-16 rounded-lg bg-blue-400  
                                 transition-all duration-500 capitalize items-center flex justify-center gap-5"
                  >
                    <svg
@@ -560,7 +560,7 @@ console.log(maps);
                 <div>
                   <button
                     onClick={() => setFlatImageOpenModal(true)}
-                    className="rounded-sm  px-5 py-[6px] text-black"
+                    className="rounded-sm bg-blue-400  px-5 py-[6px] text-white"
                     id="_modal_NavigateUI"
                   >
                     Show All Photo
@@ -652,7 +652,7 @@ console.log(maps);
             
                  </div>
                  <button
-                   className="text-black px-4 py-3 mx-2 w-full border-2 mt-16 border-black rounded-lg bg-green-400  
+                   className="text-black px-4 py-3 mx-2 w-full border-2 mt-16 rounded-lg bg-blue-400  
                                 transition-all duration-500 capitalize items-center flex justify-center gap-5"
                  >
                    <svg
@@ -732,7 +732,7 @@ console.log(maps);
                   
                  </div>
                  <button
-                   className="text-black px-4 py-3 mx-2 w-full border-2 mt-16 border-black rounded-lg bg-green-400  
+                   className="text-white px-4 py-3 mx-2 w-full border-2 mt-16 rounded-lg bg-blue-400  
                                 transition-all duration-500 capitalize items-center flex justify-center gap-5"
                  >
                    <svg

@@ -10,7 +10,7 @@ const Contact = () => {
             <div className="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-2">
                 <div className="grid grid-cols-2 gap-12 md:grid-cols-2 lg:px-5">
                     <div>
-                        <span className="inline-block p-3 text-white rounded-full bg-green-500">
+                        <span className="inline-block p-3 text-white rounded-full bg-blue-400">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -39,7 +39,7 @@ const Contact = () => {
                     </div>
 
                     <div>
-                        <span className="inline-block p-3 text-white rounded-full bg-green-500">
+                        <span className="inline-block p-3 text-white rounded-full bg-blue-400">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -73,7 +73,7 @@ const Contact = () => {
                     </div>
 
                     <div>
-                        <span className="inline-block p-3 text-white rounded-full bg-green-500">
+                        <span className="inline-block p-3 text-white rounded-full bg-blue-400">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -107,7 +107,7 @@ const Contact = () => {
                     </div>
 
                     <div>
-                        <span className="inline-block p-3 text-white rounded-full bg-green-500">
+                        <span className="inline-block p-3 text-white rounded-full bg-blue-400">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -183,7 +183,7 @@ const Contact = () => {
                             ></textarea>
                         </div>
 
-                        <button className="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-500 rounded-lg hover:bg-green-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                        <button className="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-400 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                             Send message
                         </button>
                     </form>

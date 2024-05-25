@@ -51,7 +51,7 @@ export const AllUsers = () => {
           placeholder="Search by First Name"
         />
       </div>
-      <button onClick={handleSearch} className="bg-green-500 border border-black px-1 rounded-tr-md rounded-br-md" >Search</button>
+      <button onClick={handleSearch} className="bg-blue-400 text-white border border-black px-1 rounded-tr-md rounded-br-md" >Search</button>
     </div>
       <div className="overflow-x-auto">
         <table className="min-w-[100%] shadow-md border mx-auto border-gray-100">

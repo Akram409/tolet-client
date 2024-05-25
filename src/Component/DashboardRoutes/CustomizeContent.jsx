@@ -153,7 +153,7 @@ export const CustomizeContent = () => {
         <div className="mx-auto flex w-full items-center justify-center">
           <button
             onClick={() => setOpenModal(true)}
-            className="w-full hover:bg-green-500 text-white text-base md:text-2xl py-4 rounded-lg bg-green-400 font-semibold mt-3 mb-3 px-3"
+            className="w-full hover:bg-blue-400 text-white text-base md:text-2xl py-4 rounded-lg bg-blue-400 font-semibold mt-3 mb-3 px-3"
           >
             Customize your About section
           </button>
@@ -227,7 +227,7 @@ export const CustomizeContent = () => {
                 <div className="mx-auto flex md:w-72 items-center justify-center">
                   <button
                     onClick={() => setDescriptionOpenModal(true)}
-                    className="rounded-md bg-green-700 py-2 px-5 text-white "
+                    className="rounded-md bg-blue-400 py-2 px-5 text-white "
                   >
                     Edit Description
                   </button>
@@ -302,7 +302,7 @@ export const CustomizeContent = () => {
 
         {/* contact section */}
         <div>
-          <button className="w-full hover:bg-green-500 text-white text-base md:text-2xl py-4 rounded-lg bg-green-400 font-semibold mt-3 mb-3 px-3">
+          <button className="w-full hover:bg-blue-400 text-white text-base md:text-2xl py-4 rounded-lg bg-blue-400 font-semibold mt-3 mb-3 px-3">
             Customize your Contact section
           </button>
         </div>
@@ -312,7 +312,7 @@ export const CustomizeContent = () => {
           <div className="mx-auto flex w-full items-center justify-center">
             <button
               onClick={() => setFooterOpenModal(true)}
-              className="w-full hover:bg-green-500 text-white text-base md:text-2xl py-4 rounded-lg bg-green-400 font-semibold mt-3 mb-3 px-3"
+              className="w-full hover:bg-blue-400 text-white text-base md:text-2xl py-4 rounded-lg bg-blue-400 font-semibold mt-3 mb-3 px-3"
             >
               Customize your Footer section
             </button>
@@ -414,7 +414,7 @@ export const CustomizeContent = () => {
                   </div>
                   <button
                     type="submit"
-                    className="relative py-2.5 px-5 w-full rounded-lg mt-6 bg-green-500 text-white drop-shadow-lg hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-800"
+                    className="relative py-2.5 px-5 w-full rounded-lg mt-6 bg-blue-400 text-white drop-shadow-lg hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-800"
                   >
                     Submit
                   </button>
@@ -609,7 +609,7 @@ export const CustomizeContent = () => {
             <div className="mx-auto flex lg:w-72 items-center justify-center lg:mt-16">
               <button
                 onClick={() => setOpenSocialMedia(true)}
-                className="rounded-md bg-green-700 py-2 px-5 text-white"
+                className="rounded-md bg-blue-400 py-2 px-5 text-white"
               >
                 Edit Social Media Link
               </button>
@@ -718,7 +718,7 @@ export const CustomizeContent = () => {
                     {/* button type will be submit for handling form submission*/}
                     <button
                       type="submit"
-                      className="relative py-2.5 w-full bg-green-500 px-5 rounded-lg mt-6 text-white drop-shadow-lg hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-800"
+                      className="relative py-2.5 w-full bg-blue-400 px-5 rounded-lg mt-6 text-white drop-shadow-lg hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-800"
                     >
                       Submit
                     </button>

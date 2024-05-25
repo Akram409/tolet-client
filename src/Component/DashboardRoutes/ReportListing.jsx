@@ -169,7 +169,7 @@ const ReportListing = () => {
                   <div className="mx-auto flex items-center justify-center">
                     <button
                       onClick={()=>handleModal(flat)}
-                      className="rounded-md bg-indigo-600 px-4 py-[6px] text-white"
+                      className="rounded-md bg-blue-400 px-4 py-[6px] text-white"
                     >
                       Notes!
                     </button>

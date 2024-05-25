@@ -116,7 +116,7 @@ const FindSublet = () => {
                 <button
                   className={`md:px-6 px-2 py-3 rounded-lg mr-2 text-[10px] md:text-sm lg:text-base ${
                     activeButton === "flat"
-                      ? "bg-green-400 text-black font-semibold border border-black"
+                      ? "bg-blue-400 text-white font-semibold border border-black"
                       : "bg-white text-black font-semibold"
                   }`}
                   onClick={() => handleClick("flat")}
@@ -128,7 +128,7 @@ const FindSublet = () => {
                 <button
                   className={`md:px-6 px-2 py-3 rounded-lg mr-2 text-[10px] md:text-sm lg:text-base  ${
                     activeButton === "sublet"
-                      ? "bg-green-400 text-black font-semibold border border-black"
+                      ? "bg-blue-400 text-white font-semibold border border-black"
                       : "bg-white text-black font-semibold"
                   }`}
                   onClick={() => handleClick("sublet")}
@@ -141,7 +141,7 @@ const FindSublet = () => {
                 <button
                   className={`md:px-6 px-2 py-3 rounded-lg text-[10px] md:text-sm lg:text-base ${
                     activeButton === "roommate"
-                      ? "bg-green-400 text-black font-semibold border border-black"
+                      ? "bg-blue-400 text-white font-semibold border border-black"
                       : "bg-white text-black font-semibold"
                   }`}
                   onClick={() => handleClick("roommate")}
@@ -296,7 +296,7 @@ const FindSublet = () => {
                 key={i}
                 onClick={() => paginate(i + 1)}
                 className={`join-item px-3 md:px-4 md:text-base btn rounded-md btn-outline mr-1 md:mr-2 ${
-                  currentPage === i + 1 ? "bg-green-400 text-white" : ""
+                  currentPage === i + 1 ? "bg-blue-400 text-white" : ""
                 }`}
               >
                 {i + 1}

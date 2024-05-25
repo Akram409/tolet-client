@@ -17,40 +17,39 @@ const MenuDropDown = () => {
 
   return (
     <div className="relative">
-      <div className="flex flex-row items-center md:gap-3">
-        <div className="">
+      <div className="flex flex-row items-center gap-2 md:gap-3">
+        <div className="flex items-center">
           {isAdmin && (
-            <Link to="/dashboard">
-              <button className="disabled:cursor-not-allowed cursor-pointer bg-green-400 border border-black py-3 px-2 md:px-4 text-sm font-semibold rounded-full  transition mr-3">
-                Dashboard
-              </button>
-            </Link>
-          )}
+              <Link to="/dashboard">
+                <button className="hidden md:block disabled:cursor-not-allowed cursor-pointer bg-blue-400 rounded-lg px-2 py-2  md:px-4 text-[10px] sm:text-xs font-semibold  transition text-white md:mr-2">
+                  Dashboard
+                </button>
+              </Link>
+            )}
+          <div>
           <Link to="/createFlatList">
-            <button className="disabled:cursor-not-allowed cursor-pointer bg-green-400 border border-black py-3 px-2 md:px-4 text-xs font-semibold   transition">
-            Create flat
+            <button className="disabled:cursor-not-allowed cursor-pointer bg-blue-400 rounded-lg px-2 py-2 text-[10px] sm:text-xs  md:px-4 font-semibold transition text-white">
+              Create flat
             </button>
           </Link>
           <Link to="/createRoommateList">
-            <button className="disabled:cursor-not-allowed ms-2 cursor-pointer bg-green-400 border border-black py-3 px-2 md:px-4 text-xs font-semibold  transition">
-            Create roommate listing
+            <button className="disabled:cursor-not-allowed ms-2 cursor-pointer bg-blue-400 rounded-lg px-2 py-2  md:px-4 text-[10px] sm:text-xs font-semibold  transition text-white">
+              Create roommate listing
             </button>
           </Link>
+          </div>
         </div>
         {/* DropDownButton
          */}
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-2 flex flex-row items-center 
-                 gap-3 rounded-full cursor-pointer hover:shadow-md transition"
+          className="sm:p-4 sm:py-1 sm:px-2 sm:border-[1px] sm:border-neutral-2 sm:flex sm:flex-row sm:items-center 
+          sm:gap-3 sm:rounded-full cursor-pointer hover:shadow-md transition"
         >
           <AiOutlineMenu />
-          <div className="avatar hidden md:block">
-            <div className="w-8 rounded-full ">
-              <img
-                alt="profile"
-                src={user?.user_image}
-              />
+          <div className="avatar hidden sm:block">
+            <div className="sm:w-8 md:rounded-full ">
+              <img alt="profile" src={user?.user_image} />
             </div>
           </div>
           <div className="">{/* avatar  */}</div>
@@ -62,19 +61,19 @@ const MenuDropDown = () => {
             <div className="flex flex-col px-2">
               {isAdmin && (
                 <Link to="/dashboard">
-                  <button className="block mt-5 lg:mt-0 px-11 py-1 md:hidden text-[10px] disabled:cursor-not-allowed ms-2 cursor-pointer bg-green-400 border border-black lg:py-3 lg:px-4 lg:text-sm font-semibold rounded-full  transition">
+                  <button className="block w-full mt-5 lg:mt-0 px-11 py-1 md:hidden text-[10px] disabled:cursor-not-allowed ms-2 cursor-pointer bg-blue-400 rounded-lg lg:py-3 lg:px-4 lg:text-sm text-white font-semibold transition">
                     Dashboard
                   </button>
                 </Link>
               )}
               <Link to="/createFlatList">
-                <button className="block mt-5 lg:mt-0 px-7 py-1 md:hidden text-[10px] disabled:cursor-not-allowed ms-2 cursor-pointer bg-green-400 border border-black lg:py-3 lg:px-4 lg:text-sm font-semibold rounded-full  transition">
+                <button className="block mt-5 lg:mt-0 px-7 py-1 md:hidden text-[10px] disabled:cursor-not-allowed ms-2 cursor-pointer w-full bg-blue-400 rounded-lg text-white lg:py-3 lg:px-4 lg:text-sm font-semibold  transition">
                   Create flat
                 </button>
               </Link>
               <Link to="/createRoommateList">
-                <button className="block mt-5 lg:mt-0 px-3 py-1 md:hidden disabled:cursor-not-allowed text-[10px] ms-2 cursor-pointer bg-green-400 border border-black lg:py-3 lg:px-4 lg:text-sm font-semibold rounded-full  transition">
-                Create roommate listing
+                <button className="block mt-5 lg:mt-0 px-3 py-1 md:hidden disabled:cursor-not-allowed text-[10px] ms-2 cursor-pointer w-full bg-blue-400 rounded-lg text-white lg:py-3 lg:px-4 lg:text-sm font-semibold  transition">
+                  Create roommate listing
                 </button>
               </Link>
             </div>

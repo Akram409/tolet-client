@@ -330,7 +330,7 @@ const RoommateDetails = () => {
                           </button>
                         </div>
                         <button
-                          className="text-black px-4 py-3 mx-2 w-full border-2 mt-16 border-black rounded-lg bg-green-400  
+                          className="text-black px-4 py-3 mx-2 w-full border-2 mt-16 border-black rounded-lg bg-blue-400  
                                  transition-all duration-500 capitalize  items-center flex justify-center gap-5"
                         >
                           <svg
@@ -540,7 +540,7 @@ const RoommateDetails = () => {
                     </button>
                   </div>
                   <button
-                    className="text-black px-4 py-3 mx-2 w-full border-2 mt-16 border-black rounded-lg bg-green-400  
+                    className="text-white px-4 py-3 mx-2 w-full border-2 mt-16 rounded-lg bg-blue-400  
                                  transition-all duration-500 capitalize items-center md:text-base lg:text-lg flex justify-center gap-5"
                   >
                     <svg
@@ -561,7 +561,7 @@ const RoommateDetails = () => {
               <div className="md:block hidden">
                 <button
                   onClick={() => setOpenReportModal(true)}
-                  className="rounded-md  text-black"
+                  className="bg-blue-400 text-white rounded-lg"
                 >
                   <div className="md:w-[360px] lg:w-[400px] w-96 max-w-[380px] h-fit p-5 underline flex justify-center items-center gap-5">
                     <svg

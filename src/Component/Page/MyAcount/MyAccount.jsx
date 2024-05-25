@@ -235,7 +235,7 @@ const MyAccount = () => {
           </div>
           <button
             type="submit"
-            className="bg-green-500 text-white p-2 mt-3 rounded-md w-full hover-bg-blue-700 transition-all duration-300"
+            className="bg-blue-400 text-white p-2 mt-3 rounded-md w-full hover-bg-blue-700 transition-all duration-300"
           >
            update
           </button>

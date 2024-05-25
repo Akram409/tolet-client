@@ -116,7 +116,7 @@ const Logoupdate = () => {
           }}
         >
           <button
-            className="btn rounded-3xl w-full border border-blue-500"
+            className="btn rounded-3xl w-full border border-blue-500 bg-blue-400 text-white"
             type="submit"
           >
             Upload

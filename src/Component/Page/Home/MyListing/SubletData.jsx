@@ -233,7 +233,7 @@ const SubletData = () => {
           <button
             className={`md:px-6 px-2 py-3 rounded-lg mr-2 text-[10px] md:text-sm lg:text-base ${
               activeButton === "flat"
-                ? "bg-green-400 text-black font-semibold border border-black"
+                ? "bg-blue-400 text-white font-semibold border border-black"
                 : "bg-white text-black font-semibold"
             }`}
             onClick={() => handleClick("flat")}
@@ -245,7 +245,7 @@ const SubletData = () => {
           <button
             className={`md:px-6 px-2 py-3 rounded-lg mr-2 text-[10px] md:text-sm lg:text-base  ${
               activeButton === "sublet"
-                ? "bg-green-400 text-black font-semibold border border-black"
+                ? "bg-blue-400 text-white font-semibold border border-black"
                 : "bg-white text-black font-semibold"
             }`}
             onClick={() => handleClick("sublet")}
@@ -258,7 +258,7 @@ const SubletData = () => {
           <button
             className={`md:px-6 px-2 py-3 rounded-lg text-[10px] md:text-sm lg:text-base ${
               activeButton === "roommate"
-                ? "bg-green-400 text-black font-semibold border border-black"
+                ? "bg-blue-400 text-white font-semibold border border-black"
                 : "bg-white text-black font-semibold"
             }`}
             onClick={() => handleClick("roommate")}
@@ -356,7 +356,7 @@ const SubletData = () => {
                                                                             flat
                                                                         )
                                                                     }
-                                                                    className="rounded-md bg-green-500 px-3 font-semibold py-[6px] text-white"
+                                                                    className="rounded-md bg-blue-400 px-3 font-semibold py-[6px] text-white"
                                                                 >
                                                                     Edit Button
                                                                 </button>
@@ -827,7 +827,7 @@ const SubletData = () => {
                                                                                             </div>
                                                                                         </div>
                                                                                         <button
-                                                                                            className="w-full bg bg-green-500 text-white"
+                                                                                            className="w-full bg bg-blue-400 text-white"
                                                                                             type="submit"
                                                                                             fullWidth
                                                                                             variant="contained"
